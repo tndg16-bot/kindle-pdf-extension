@@ -1,0 +1,311 @@
+{
+  "main": {
+    "id": "430586f36c9415ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5ac17dc56e240be",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ace31018904af64a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "無題のフォルダ/★やること.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "★やること"
+            }
+          },
+          {
+            "id": "27e083b7b1ad8c39",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "顧客リスト/円屋様.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "円屋様"
+            }
+          },
+          {
+            "id": "ad9b25b5663cb262",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clippings/note ――つくる、つながる、とどける。.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "note ――つくる、つながる、とどける。"
+            }
+          },
+          {
+            "id": "b1532a9348508d6f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clippings/エバーグリーンパール&ダイアモンドローンチ  国家錬金術師🥺 X→@Pien_Alchemist.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "エバーグリーンパール&ダイアモンドローンチ  国家錬金術師🥺 X→@Pien_Alchemist"
+            }
+          },
+          {
+            "id": "ad36ddf05d839675",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "無題のフォルダ/コミュニティビジネス.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "コミュニティビジネス"
+            }
+          },
+          {
+            "id": "59cce7723caf3aa3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "鉄則1_LINEは教育ツールではない.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "鉄則1_LINEは教育ツールではない"
+            }
+          },
+          {
+            "id": "189fcafa1697413b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "バイブコーティング/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AIでアプリ作って収益化するバイブコーディングで個人開発する方法"
+            }
+          },
+          {
+            "id": "c8cf90f185f1b7c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clippings/キーワード入力するだけでブログ記事を量産出来る最強スプレッドシート＋連携マニュアル  はじめ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "キーワード入力するだけでブログ記事を量産出来る最強スプレッドシート＋連携マニュアル  はじめ"
+            }
+          }
+        ],
+        "currentTab": 7
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4feedd2c704a108a",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f1640dc834624d1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9625a3ae9aecaf0c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "72b2ee03423251dd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "82732c73d86e3f81",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "4e3d43daf1ef1331",
+    "type": "split",
+    "children": [
+      {
+        "id": "c7dee92aec6987b2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "435cb03c0c634d15",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "本山ビジネスモデル.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "本山ビジネスモデルへのバックリンク"
+            }
+          },
+          {
+            "id": "4239ef0598b993b9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "本山ビジネスモデル.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "本山ビジネスモデルからのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "3eaa19b49c8c8560",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "ee7a8755c36fd9d3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "本山ビジネスモデル.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "本山ビジネスモデルのアウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "remotely-save:Remotely Save": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "c8cf90f185f1b7c5",
+  "lastOpenFiles": [
+    "note/1_執筆中/2025-08-19_AIが変える中小企業の組織文化.md",
+    "note/0_講座コンテンツ/AI講座実践編_全章トークスクリプト.md",
+    "note/0_講座コンテンツ",
+    "本山貴裕/AI講座実践編_全章トークスクリプト.md",
+    "note/1_執筆中/なぜあの社長はいつも暇なのか.md",
+    "note/2_公開済み/ストーリー",
+    "note/2_公開済み/AI活用術",
+    "note/1_執筆中",
+    "note/2_公開済み",
+    "note/0_アイデア",
+    "note",
+    "本山貴裕/2025-08-19_アクションプラン（短期集中）.md",
+    "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
+    "メモ.md",
+    "Clippings/オンラインスクール・講座・サロン特化の独自決済【Unlock Knowledge1｜南幅一刀.md",
+    "Clippings/OpenAI Codex CLIとは？使い方やAPI料金！日本語対応や活用事例.md",
+    "無題のファイル.md",
+    "Clippings/東大・松尾研、2024年度「大規模言語モデル講座」の講義スライド資料を無料公開／LLMの活用法からモデル構造、応用まで幅広く学べる.md",
+    "Clippings/note ――つくる、つながる、とどける。.md",
+    "鉄則4_奇襲をかけて売上を上げる.md",
+    "Next.js_Supabase_Setup_Manual.md",
+    "無題のファイル 1.md",
+    "カーソルの特徴について.md",
+    "新幹線内の眼も",
+    "新刊セイン内の眼も",
+    "バイブコーティング/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
+    "バイブコーティング/【コピペでOK】Obsidianが最強ツールに！Gemini CLIを秒速でインストールする手順（Windows版）｜小峯知之｜エンジニア＆教育ライター.md",
+    "バイブコーティング/『AI駆動経営』Claude Codeを用いたバイブコーディング開発フロー.md",
+    "カムタマブログテーマについて.md",
+    "鉄則1_LINEは教育ツールではない.md",
+    "バイブコーティング/Cursor - The AI Code Editor.md",
+    "Clippings/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
+    "Clippings/AIでアプリ作って収益化するバイブコーディングで個人開発する方法 1.md",
+    "バイブコーティング/AIを使って爆速でアプリ開発を行うためのコーディングワークフロー【バイブ・コーディングAI駆動開発】 1.md",
+    "バイブコーティング/AIを使って爆速でアプリ開発を行うためのコーディングワークフロー【バイブ・コーディングAI駆動開発】.md",
+    "バイブコーティング"
+  ]
+}

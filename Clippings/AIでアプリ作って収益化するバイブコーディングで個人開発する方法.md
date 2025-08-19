@@ -1,0 +1,12 @@
+---
+title: "AIでアプリ作って収益化するバイブコーディングで個人開発する方法"
+source: "https://m.youtube.com/watch?v=8vWRCYvLr94"
+author:
+  - "[[YouTube]]"
+published:
+created: 2025-08-08
+description: "#入門 #プログラミング #claude #claudecode #curosr #vibecoding #バイブコーディング #ai #アプリ開発 #uidesign 今回の動画で実際に作ったLP↓https://sparkling-kleicha-5d56dd.netlify.app/-----------------------------------------------------------------------------------------------------------------------------💻【Claude Codeで学ぶ実践SaaS開発マスターコース】ただいま無料で早期予約受付中です(30%OFFキャンペーン)👇https://superb-duckanoo-e3ee45.netlify.app/(こちらも動画の通りの方法で作成しました)-----------------------------------------------------------------------------------------------------------------------------🚀 【1日66円で学べるAI × プログラミングスクール：ShinCode_Camp】生成AIを使ったアプリ開発 / Web開発の基本 / 個人で稼ぐ力等が学べるオンラインプログラミングスクール👇・【月額プラン】1,980円/月https://code-s-school-5bc2.thinkific.com/bundles/shincode-camp・【買い切りプラン】通常価格：39,800円▼YouTubeチャンネル登録者限定▼20%OFFクーポン「shincodepro」使用で 31,840円https://code-s-school-5bc2.thinkific.com/bundles/shincode-pro月額プラン・買い切りプランのコンテンツ内容はどちらも同じです。どちらかお好きなプランをお選びくださいませ。-----------------------------------------------------------------------------------------------------------------------------🤖 【AI駆動開発マスター講座】Webアプリのアイデア / 要件定義 / 設計 / 開発 / リリース / 集客全てを網羅した「生成AIWeb開発の全て」が詰まっている講座となります👇https://ai-driven-online-course.vercel.appYoutube視聴者限定20%割引のクーポンコードはこちら👇【shinaidriven】-----------------------------------------------------------------------------------------------------------------------------【Udemy90%割引クーポンも配布中🚀】http://shincode.info/2021/12/31/udemy-discount-coupon/【ShinCodeへのお仕事のご依頼】開発やコラボ等を受け付けております👇HP：https://shincode-dev-hp.vercel.appまたは、ShinCodeのXのDMにてお願いいたします。X：https://x.com/Shin_Engineer-----------------------------------------------------------------------------------------------------------------------------【この動画を視聴するメリット】・Claude Codeの基本的な使い方が分かる・Claude CodeでUIデザインを無限に生成する方法が分かる【信頼性】・Udemy講師・講師レビュー評価94.6%・Udemy受講生延べ3000人突破・Webアプリ/サイト開発数：200以上・生きがい：プログラミングでサイトやアプリを作ること★チャンネル登録はこちらから★https://www.youtube.com/channel/UCNTxclE0N4qsUuirssL_D8w?sub_confirmation=1★今回のソースコード★★運営者SNS★Twitter：https://twitter.com/Shin_Engineer★この動画で使用している機材★キーボード(Keychron K6 赤軸)：https://amzn.to/3F4zca5マウス(Logicool G ロジクール G ゲーミングマウス)：https://amzn.to/3DZaaYBマイク(サンワダイレクト USBマイク PCマイク)：https://amzn.to/30AVwJFマイクスタンド(Luling Arts マイクスタンド マイクアーム スタンド)：https://amzn.to/3se5onZ※アフィリエイトリンクになります。"
+tags:
+  - "clippings"
+---
+![](https://www.youtube.com/watch?v=8vWRCYvLr94)
