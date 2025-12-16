@@ -7,7 +7,11 @@ published:
 created: 2025-08-06
 description: "Brain(ブレイン)は、自分が持っている知識やノウハウを有料販売し、収益化することができるプラットフォームです。レビュー機能により、良いコンテンツが可視化されるため、学ぶ側は質の高い学びを得ることができる仕組みが整っています。"
 tags:
-  - "clippings"
+  - AI
+  - YouTube
+  - 情報収集/クリッピング
+  - 情報収集/AI
+  - 情報収集/YouTube
 ---
 ![](https://image.brain-market.com/store/736ece1c16ae9a4260482a9e4cc8827f.png)
 

@@ -4,123 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "f5ac17dc56e240be",
+        "id": "78a618ac6d0e12ee",
         "type": "tabs",
         "children": [
           {
-            "id": "ace31018904af64a",
+            "id": "f19f902a36c6d985",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "無題のフォルダ/★やること.md",
+                "file": "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "★やること"
+              "title": "2025-08-19_Geminiによる自己分析と事業戦略メモ"
             }
           },
           {
-            "id": "27e083b7b1ad8c39",
+            "id": "8329b973b7e8f06e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "顧客リスト/円屋様.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "円屋様"
+              "type": "full-calendar-view",
+              "state": {},
+              "icon": "calendar-glyph",
+              "title": "Calendar"
             }
           },
           {
-            "id": "ad9b25b5663cb262",
+            "id": "fc72cbca73b68a06",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clippings/note ――つくる、つながる、とどける。.md",
+                "file": "Clippings/全記事まとめとおまけ｜ロ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "note ――つくる、つながる、とどける。"
-            }
-          },
-          {
-            "id": "b1532a9348508d6f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Clippings/エバーグリーンパール&ダイアモンドローンチ  国家錬金術師🥺 X→@Pien_Alchemist.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "エバーグリーンパール&ダイアモンドローンチ  国家錬金術師🥺 X→@Pien_Alchemist"
-            }
-          },
-          {
-            "id": "ad36ddf05d839675",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "無題のフォルダ/コミュニティビジネス.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "コミュニティビジネス"
-            }
-          },
-          {
-            "id": "59cce7723caf3aa3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "鉄則1_LINEは教育ツールではない.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "鉄則1_LINEは教育ツールではない"
-            }
-          },
-          {
-            "id": "189fcafa1697413b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "バイブコーティング/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "AIでアプリ作って収益化するバイブコーディングで個人開発する方法"
-            }
-          },
-          {
-            "id": "c8cf90f185f1b7c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Clippings/キーワード入力するだけでブログ記事を量産出来る最強スプレッドシート＋連携マニュアル  はじめ.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "キーワード入力するだけでブログ記事を量産出来る最強スプレッドシート＋連携マニュアル  はじめ"
+              "title": "全記事まとめとおまけ｜ロ"
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -177,7 +103,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 357.5
   },
   "right": {
     "id": "4e3d43daf1ef1331",
@@ -259,6 +185,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:クイックスイッチャーを開く": false,
       "graph:グラフビューを開く": false,
       "canvas:新規キャンバスを作成": false,
@@ -266,46 +193,59 @@
       "templates:テンプレートを挿入": false,
       "command-palette:コマンドパレットを開く": false,
       "remotely-save:Remotely Save": false,
-      "terminal:Open terminal": false
+      "terminal:Open terminal": false,
+      "obsidian-kindle-plugin:Sync your Kindle highlights": false,
+      "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "c8cf90f185f1b7c5",
+  "active": "fc72cbca73b68a06",
   "lastOpenFiles": [
-    "note/1_執筆中/2025-08-19_AIが変える中小企業の組織文化.md",
-    "note/0_講座コンテンツ/AI講座実践編_全章トークスクリプト.md",
-    "note/0_講座コンテンツ",
-    "本山貴裕/AI講座実践編_全章トークスクリプト.md",
-    "note/1_執筆中/なぜあの社長はいつも暇なのか.md",
-    "note/2_公開済み/ストーリー",
-    "note/2_公開済み/AI活用術",
-    "note/1_執筆中",
-    "note/2_公開済み",
-    "note/0_アイデア",
-    "note",
-    "本山貴裕/2025-08-19_アクションプラン（短期集中）.md",
-    "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
-    "メモ.md",
-    "Clippings/オンラインスクール・講座・サロン特化の独自決済【Unlock Knowledge1｜南幅一刀.md",
-    "Clippings/OpenAI Codex CLIとは？使い方やAPI料金！日本語対応や活用事例.md",
-    "無題のファイル.md",
-    "Clippings/東大・松尾研、2024年度「大規模言語モデル講座」の講義スライド資料を無料公開／LLMの活用法からモデル構造、応用まで幅広く学べる.md",
-    "Clippings/note ――つくる、つながる、とどける。.md",
-    "鉄則4_奇襲をかけて売上を上げる.md",
-    "Next.js_Supabase_Setup_Manual.md",
-    "無題のファイル 1.md",
-    "カーソルの特徴について.md",
-    "新幹線内の眼も",
-    "新刊セイン内の眼も",
-    "バイブコーティング/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
-    "バイブコーティング/【コピペでOK】Obsidianが最強ツールに！Gemini CLIを秒速でインストールする手順（Windows版）｜小峯知之｜エンジニア＆教育ライター.md",
-    "バイブコーティング/『AI駆動経営』Claude Codeを用いたバイブコーディング開発フロー.md",
-    "カムタマブログテーマについて.md",
-    "鉄則1_LINEは教育ツールではない.md",
-    "バイブコーティング/Cursor - The AI Code Editor.md",
-    "Clippings/AIでアプリ作って収益化するバイブコーディングで個人開発する方法.md",
-    "Clippings/AIでアプリ作って収益化するバイブコーディングで個人開発する方法 1.md",
-    "バイブコーティング/AIを使って爆速でアプリ開発を行うためのコーディングワークフロー【バイブ・コーディングAI駆動開発】 1.md",
-    "バイブコーティング/AIを使って爆速でアプリ開発を行うためのコーディングワークフロー【バイブ・コーディングAI駆動開発】.md",
-    "バイブコーティング"
+    "Apps/remotely-save/papa/Gmail/20251214-183752_炎上覚悟で言いますねん.md",
+    "Clippings/全記事まとめとおまけ｜ロ.md",
+    "本山貴弘/商品開発/roadmap_15pages_content.md",
+    "本山貴弘/SNS原稿/credibility_post_roadmap.md",
+    "本山貴弘/AppScript/marketing_psychology_prompt.md",
+    "本山貴弘/AppScript/nanobanana_prompts.md",
+    "本山貴弘/SNS原稿/note_banner_cta.png",
+    "本山貴弘/SNS原稿/note_diagram_auto.png",
+    "本山貴弘/SNS原稿/note_diagram_steps.png",
+    "本山貴弘/SNS原稿/note_diagram_labor.png",
+    "本山貴弘/SNS原稿/note_thumbnail.png",
+    "本山貴弘/SNS原稿/note_pinned_article_draft.md",
+    "本山貴弘/進行中プロジェクト/Project_SoloPodcast.md",
+    "本山貴弘/進行中プロジェクト/Project_ContentFactory.md",
+    "本山貴弘/進行中プロジェクト",
+    "本山貴弘/Project_SoloPodcast.md",
+    "本山貴弘/Project_ContentFactory.md",
+    "本山貴弘/AquaVoice_DropBox.md",
+    "本山貴弘/2025-12-16_DailyReflection.md",
+    "本山貴弘/ランディングページ/utage_settings_cheatsheet.md",
+    "本山貴弘/ランディングページ/lp_background_clean.png",
+    "本山貴弘/ランディングページ/lp_header.png",
+    "本山貴弘/SNS原稿/teaser_posts.md",
+    "本山貴弘/ランディングページ/nurture_scenario_draft.md",
+    "本山貴弘/AppScript/utage_setup_guide.md",
+    "本山貴弘/ランディングページ/consultation_lp_draft.md",
+    "本山貴弘/商品開発/free_gift_roadmap.html",
+    "本山貴弘/商品開発/free_gift_roadmap.md",
+    "無題のファイル 6.md",
+    "本山貴弘/AppScript/code.gs",
+    "本山貴弘/商品開発/500yen_product_plan.md",
+    "本山貴弘/商品開発",
+    "本山貴弘/タスク詳細/別紙_短期収益化CP.md",
+    "threads_icon_pixel_tiger_forest_1765798544390.png",
+    "本山貴弘/AppScript/process_icon.py",
+    "本山貴弘/SNS原稿/threads_posts_batch4_habits.md",
+    "本山貴弘/SNS原稿/threads_posts_batch3_self_reflection.md",
+    "本山貴弘/SNS原稿/threads_posts_batch2_ai_money.md",
+    "本山貴弘/SNS原稿/SNS投稿作成マニュアル.md",
+    "本山貴弘/AppScript/idea_template.csv",
+    "本山貴弘/AppScript/dashboard_template.csv",
+    "本山貴弘/AppScript",
+    "本山貴弘/ランディングページ/index.html",
+    "本山貴弘/ランディングページ/styles.css",
+    "無題のファイル.canvas",
+    "文字起こしブースター/mioji_share_v2.1/venv/Lib/site-packages/gradio/_frontend_code/imageslider/img_02.png",
+    "文字起こしブースター/mioji_share_v2.1/venv/Lib/site-packages/gradio/_frontend_code/imageslider/img_03.png"
   ]
 }

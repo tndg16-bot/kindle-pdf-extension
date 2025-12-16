@@ -1,0 +1,399 @@
+import io
+import os
+import time
+import math
+import base64
+import tempfile
+from pathlib import Path
+from typing import Tuple, Callable, Optional
+import psutil
+import gc
+
+from PIL import Image
+import os as _os
+# Render環境でのみPlaywrightパスを設定
+if _os.environ.get("RENDER"):
+    _os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", "/opt/render/project/src/.playwright")
+from playwright.sync_api import sync_playwright
+
+# We'll try the new google-genai client first (supports Gemini 2.x),
+# then fall back to google-generativeai for older models.
+try:
+    from google import genai as genai_new  # type: ignore
+except Exception:  # pragma: no cover
+    genai_new = None
+try:
+    import google.generativeai as genai_old  # type: ignore
+except Exception:  # pragma: no cover
+    genai_old = None
+
+
+class MemoryMonitor:
+    """メモリ使用量を監視するクラス"""
+    def __init__(self):
+        self.process = psutil.Process()
+        self.initial_memory = self.get_memory_mb()
+        self.peak_memory = self.initial_memory
+        self.measurements = []
+    
+    def get_memory_mb(self):
+        """現在のメモリ使用量をMBで取得"""
+        return self.process.memory_info().rss / 1024 / 1024
+    
+    def log_memory(self, stage: str):
+        """メモリ使用量をログに記録"""
+        current = self.get_memory_mb()
+        self.peak_memory = max(self.peak_memory, current)
+        self.measurements.append({
+            'stage': stage,
+            'memory_mb': current,
+            'increase_mb': current - self.initial_memory
+        })
+        print(f"🧠 [MEMORY] {stage}: {current:.1f}MB (増加: {current - self.initial_memory:.1f}MB)")
+        return current
+    
+    def get_report(self):
+        """メモリ使用量レポートを生成"""
+        report = f"\n{'='*50}\n"
+        report += f"📊 メモリ使用量レポート\n"
+        report += f"{'='*50}\n"
+        report += f"🏁 初期メモリ: {self.initial_memory:.1f}MB\n"
+        report += f"📈 最大メモリ: {self.peak_memory:.1f}MB\n"
+        report += f"⬆️  最大増加量: {self.peak_memory - self.initial_memory:.1f}MB\n\n"
+        
+        for m in self.measurements:
+            report += f"  {m['stage']}: {m['memory_mb']:.1f}MB (+{m['increase_mb']:.1f}MB)\n"
+        
+        report += f"\n{'='*50}\n"
+        return report
+
+
+def _stitch_vertical(images, overlap: int = 0) -> Image.Image:
+    if not images:
+        raise ValueError("no images to stitch")
+    widths = [im.width for im in images]
+    if len(set(widths)) != 1:
+        # pad to max width
+        max_w = max(widths)
+        padded = []
+        for im in images:
+            if im.width == max_w:
+                padded.append(im)
+            else:
+                canvas = Image.new("RGB", (max_w, im.height), (255, 255, 255))
+                canvas.paste(im, (0, 0))
+                padded.append(canvas)
+        images = padded
+    total_h = sum(im.height for im in images) - max(0, overlap) * (len(images) - 1)
+    out = Image.new("RGB", (images[0].width, total_h), (255, 255, 255))
+    y = 0
+    for idx, im in enumerate(images):
+        if idx > 0:
+            y -= overlap
+        out.paste(im, (0, y))
+        y += im.height
+    return out
+
+
+def capture_fullpage_tiled(
+    url: str,
+    out_png: Path,
+    width: int = 1280,
+    tile_height: int = 2400,
+    wait_after_load: float = 1.0,
+    device_scale: float = 1.0,
+    overlap: int = 200,
+    pause_animations: bool = True,
+    hide_fixed: bool = True,
+    prerender_scroll: bool = True,
+    goto_timeout_ms: int = 90_000,
+    # 512MB プランでも落ちにくいように、最終画像の最大ピクセル数を制限
+    # 例: 40,000,000 ピクセル ≒ 1280 x 31,250px ≒ 約120MB程度（RGB生メモリ）
+    max_output_pixels: int = 40_000_000,
+    progress_cb: Optional[Callable[[float, str], None]] = None,
+) -> Tuple[Path, int]:
+    
+    # 🧠 メモリ監視開始
+    memory_monitor = MemoryMonitor()
+    memory_monitor.log_memory("🚀 処理開始")
+    
+    if not (url.startswith("http://") or url.startswith("https://")):
+        url = "http://" + url
+
+    try:
+        memory_monitor.log_memory("🌐 Playwright起動前")
+        with sync_playwright() as p:
+            try:
+                browser = p.chromium.launch(headless=True, args=[
+                    "--no-sandbox",
+                    "--disable-setuid-sandbox",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                    "--disable-web-security",
+                    "--disable-features=VizDisplayCompositor",
+                ])
+                memory_monitor.log_memory("🔧 ブラウザ起動完了")
+            except Exception as e:
+                if "Executable doesn't exist" in str(e):
+                    raise RuntimeError(
+                        "Playwrightブラウザが見つかりません。\n"
+                        "サーバー管理者にお問い合わせください。\n"
+                        f"詳細: {str(e)}\n"
+                        f"PLAYWRIGHT_BROWSERS_PATH={_os.environ.get('PLAYWRIGHT_BROWSERS_PATH','<unset>')}"
+                    )
+                else:
+                    raise RuntimeError(f"ブラウザの起動に失敗しました: {str(e)}")
+
+            context = browser.new_context(
+                viewport={"width": int(width), "height": int(tile_height)},
+                device_scale_factor=float(device_scale),
+            )
+            page = context.new_page()
+            page.set_default_navigation_timeout(int(goto_timeout_ms))
+            memory_monitor.log_memory("📄 ページコンテキスト作成")
+            
+            if progress_cb:
+                progress_cb(0.05, "ブラウザ起動")
+            # Be tolerant on first load: wait for DOM, then optionally network idle
+            page.goto(url, wait_until="domcontentloaded")
+            try:
+                page.wait_for_load_state("networkidle", timeout=10_000)
+            except Exception:
+                pass
+            time.sleep(wait_after_load)
+            memory_monitor.log_memory("📥 ページ読み込み完了")
+            
+            if progress_cb:
+                progress_cb(0.1, "ページ安定化")
+
+            # Stabilize layout: pause animations and optionally hide fixed elements
+            if pause_animations or hide_fixed:
+                css_rules = []
+                if pause_animations:
+                    css_rules.append("* { animation: none !important; transition: none !important; }")
+                if hide_fixed:
+                    css_rules.append("* { scroll-behavior: auto !important; } .fixed, [style*='position: fixed'] { visibility: hidden !important; }")
+                page.add_style_tag(content="\n".join(css_rules))
+
+            total_height = page.evaluate(
+                "() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)"
+            )
+            memory_monitor.log_memory("📏 ページ高さ取得")
+
+            # Pre-render lazy content by scrolling down and back
+            if prerender_scroll and total_height > tile_height:
+                step_pre = max(200, int(tile_height // 2))
+                y = 0
+                while y < total_height:
+                    page.evaluate(f"window.scrollTo(0, {int(y)});")
+                    time.sleep(0.05)
+                    y += step_pre
+                page.evaluate("window.scrollTo(0, 0);")
+                time.sleep(0.2)
+                total_height = page.evaluate(
+                    "() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)"
+                )
+            memory_monitor.log_memory("📜 事前スクロール完了")
+            
+            if progress_cb:
+                progress_cb(0.15, "遅延読み込みの描画完了")
+
+            step = max(1, int(tile_height - overlap))
+            last_start = max(0, int(total_height - tile_height))
+
+            # 出力画像の高さを安全範囲に制限
+            max_h = max(1, int(max_output_pixels // max(1, width)))
+            out_h = min(total_height, max_h)
+            if progress_cb and out_h < total_height:
+                progress_cb(0.12, f"長過ぎるページのため先頭 {out_h}px のみ保存")
+
+            # 🧮 推定メモリ使用量を計算・表示
+            estimated_canvas_mb = (width * out_h * 3) / (1024 * 1024)  # RGB = 3 bytes per pixel
+            print(f"🖼️  推定キャンバスメモリ: {estimated_canvas_mb:.1f}MB ({width}x{out_h}px)")
+            
+            # ガベージコレクション実行
+            gc.collect()
+            memory_monitor.log_memory("🗑️  キャンバス作成前（GC実行後）")
+
+            # インクリメンタルに貼り付け（大きなタイルリストを保持しない）
+            try:
+                canvas = Image.new("RGB", (int(width), int(out_h)), (255, 255, 255))
+                memory_monitor.log_memory("🎨 キャンバス作成完了")
+            except MemoryError as e:
+                print(f"❌ キャンバス作成でメモリエラー: {e}")
+                memory_monitor.log_memory("💥 メモリエラー発生")
+                print(memory_monitor.get_report())
+                raise
+
+            i = 0
+            prev_y = -1
+            # 進捗用の推定タイル枚数（切り詰め後の高さで再計算）
+            est_last_start = max(0, int(out_h - tile_height))
+            est_tiles = max(1, int((est_last_start // step) + 1))
+            pasted_tiles = 0
+            while True:
+                y = min(i * step, last_start)
+                if prev_y == y:
+                    break
+                # 出力の上限を超える位置なら終了
+                if y >= out_h:
+                    break
+
+                page.evaluate(f"window.scrollTo(0, {int(y)});")
+                time.sleep(0.15)
+                
+                # 📸 5タイルごとにメモリをログ
+                if pasted_tiles % 5 == 0:
+                    memory_monitor.log_memory(f"📸 タイル{pasted_tiles}撮影前")
+                
+                buf = page.screenshot(full_page=False)
+                img = Image.open(io.BytesIO(buf)).convert("RGB")
+
+                # 下端がはみ出す場合は切り詰め
+                if y + img.height > out_h:
+                    crop_h = max(0, out_h - y)
+                    if crop_h <= 0:
+                        break
+                    img = img.crop((0, 0, img.width, crop_h))
+
+                canvas.paste(img, (0, int(y)))
+                pasted_tiles += 1
+
+                # 🗑️ 画像オブジェクトを明示的に削除
+                del img
+                del buf
+
+                # 10タイルごとにガベージコレクション
+                if pasted_tiles % 10 == 0:
+                    gc.collect()
+                    memory_monitor.log_memory(f"🧹 タイル{pasted_tiles}処理後（GC実行）")
+
+                if progress_cb:
+                    # 0.2〜0.8 をタイル撮影に割り当て
+                    frac = 0.2 + (min(pasted_tiles, est_tiles) / est_tiles) * 0.6
+                    progress_cb(min(frac, 0.8), f"タイル撮影 {min(pasted_tiles, est_tiles)}/{est_tiles}")
+
+                if y >= last_start:
+                    break
+                prev_y = y
+                i += 1
+
+            memory_monitor.log_memory("📸 全タイル処理完了")
+
+            # 画像保存
+            canvas.save(out_png)
+            memory_monitor.log_memory("💾 画像保存完了")
+            
+            # リソース解放
+            del canvas
+            page.close()
+            context.close()
+            browser.close()
+            
+            gc.collect()
+            memory_monitor.log_memory("🧹 リソース解放後")
+            
+            # メモリレポートを出力
+            print(memory_monitor.get_report())
+            
+            return out_png, pasted_tiles
+    except Exception as e:
+        memory_monitor.log_memory("💥 エラー発生時")
+        print(memory_monitor.get_report())
+        if progress_cb:
+            progress_cb(0, f"エラー: {str(e)}")
+        raise RuntimeError(f"スクリーンショットの取得に失敗しました: {str(e)}")
+
+
+def gemini_ocr_image(image_path: Path, api_key: str, model: str = "gemini-2.5-flash") -> str:
+    img = Image.open(image_path).convert("RGB")
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    png_bytes = buf.getvalue()
+
+    prompt = (
+        "次の画像に含まれる文字を可能な限りすべて抽出して、日本語でテキストのみ出力してください。"
+    )
+
+    # Preferred: google-genai (Gemini 2.x)
+    if genai_new is not None:
+        client = genai_new.Client(api_key=api_key)
+        tried = []
+        for m in [model, "gemini-2.0-flash", "gemini-1.5-flash"]:
+            try:
+                resp = client.models.generate_content(
+                    model=m,
+                    contents=[
+                        {
+                            "role": "user",
+                            "parts": [
+                                {"text": prompt},
+                                {
+                                    "inline_data": {
+                                        "mime_type": "image/png",
+                                        "data": base64.b64encode(png_bytes).decode("utf-8"),
+                                    }
+                                },
+                            ],
+                        }
+                    ],
+                )
+                return (resp.text or "").strip()
+            except Exception:
+                tried.append(m)
+                continue
+
+    # Fallback: google-generativeai (Gemini 1.5)
+    if genai_old is not None:
+        try:
+            genai_old.configure(api_key=api_key)
+            mdl = genai_old.GenerativeModel("gemini-1.5-flash")
+            resp = mdl.generate_content([
+                prompt,
+                {"mime_type": "image/png", "data": png_bytes},
+            ])
+            return (resp.text or "").strip()
+        except Exception as e:
+            raise RuntimeError(f"Gemini(1.5) 呼び出しに失敗しました: {e}")
+
+    raise RuntimeError("Geminiクライアントが見つかりません（google-genai または google-generativeai をインストールしてください）")
+
+
+def lp_capture_and_ocr(
+    url: str,
+    gemini_api_key: str,
+    model: str = "gemini-2.5-flash",
+    width: int = 1280,
+    tile_height: int = 2400,
+    device_scale: float = 1.0,
+    overlap: int = 200,
+    pause_animations: bool = True,
+    hide_fixed: bool = True,
+    prerender_scroll: bool = True,
+    goto_timeout_ms: int = 90_000,
+    progress_cb: Optional[Callable[[float, str], None]] = None,
+) -> Tuple[str, str, str, int]:
+    tmpdir = Path(tempfile.mkdtemp(prefix="moji_lp_"))
+    png_path = tmpdir / "lp_screenshot.png"
+    txt_path = tmpdir / "lp_text_gemini.txt"
+
+    png_path, tiles_count = capture_fullpage_tiled(
+        url=url,
+        out_png=png_path,
+        width=width,
+        tile_height=tile_height,
+        device_scale=device_scale,
+        overlap=overlap,
+        pause_animations=pause_animations,
+        hide_fixed=hide_fixed,
+        prerender_scroll=prerender_scroll,
+        goto_timeout_ms=goto_timeout_ms,
+        progress_cb=progress_cb,
+    )
+    if progress_cb:
+        progress_cb(0.85, "OCR実行中(Gemini)")
+    text = gemini_ocr_image(png_path, api_key=gemini_api_key, model=model)
+    if progress_cb:
+        progress_cb(1.0, "完了")
+    txt_path.write_text(text, encoding="utf-8")
+    return str(png_path), text, str(txt_path), tiles_count
