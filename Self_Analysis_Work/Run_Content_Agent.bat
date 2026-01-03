@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_Content_Agent...
+call "..\scripts\content\run_content_agent.bat"

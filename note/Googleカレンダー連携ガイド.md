@@ -40,3 +40,26 @@ ObsidianでGoogleカレンダーの予定を利用するには、主に以下の
 1.  Obsidianの画面左側（リボン）にある **「今日のデイリーノートを開く」** アイコン（カレンダーにチェックマークのアイコン 📅）をクリックします。
 2.  自動的に今日のノートが作成され、テンプレート（カレンダー入り）が適用されます。
 3.  そのまま振り返りを記入してください。
+
+## 方法3: Pythonスクリプトでノートを自動生成する (上級者向け)
+
+より柔軟に、各予定ごとに個別のObsidianノートを自動作成する方法です。
+
+### 事前準備
+
+1.  **Google Cloud Console** でプロジェクトを作成し、Google Calendar APIを有効化します。
+2.  「OAuthクライアントID」を作成し、`credentials.json` をダウンロードします。
+3.  このファイルを `Obsidian Vault/papa/scripts/calendar_sync/credentials.json` に配置します。
+
+### セットアップと実行
+
+1.  必要なライブラリをインストールします:
+    ```bash
+    pip install -r scripts/calendar_sync/requirements.txt
+    ```
+2.  スクリプトを実行します:
+    ```bash
+    python scripts/calendar_sync/sync_google_calendar.py
+    ```
+3.  初回実行時はブラウザが開き、Googleアカウントの認証が求められます。
+4.  認証が完了すると、`Calendar/` フォルダ内に予定ごとのノートが作成されます。

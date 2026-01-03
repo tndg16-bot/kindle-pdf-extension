@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_Ideation_Agent...
+call "..\scripts\ideation\run_ideation_agent.bat"

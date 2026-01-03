@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_SNS_Agent...
+call "..\scripts\sns\run_sns_agent.bat"

@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_Research_Agent...
+call "..\scripts\asp_monitor\run_research_agent.bat"

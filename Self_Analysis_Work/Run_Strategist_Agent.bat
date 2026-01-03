@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_Strategist_Agent...
+call "..\scripts\strategy\run_strategist.bat"

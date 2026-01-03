@@ -1,0 +1,3 @@
+@echo off
+echo Calling Run_Design_Agent...
+call "..\scripts\design\run_design_agent.bat"
