@@ -1,0 +1,43 @@
+# Dependencies
+**/node_modules/
+.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js artifacts
+**/.next/
+**/out/
+
+# Production
+/build
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ENV
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+**/.vercel
+
+# Obsidian system files (frequently changing noise)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/appearance.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Git conflict files (from Dropbox/iCloud sync if any)
+**/*.sync-conflict-*
