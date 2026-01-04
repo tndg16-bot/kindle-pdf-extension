@@ -5,8 +5,38 @@
             "args": [
                 "-y",
                 "@modelcontextprotocol/server-playwright"
+            ]
+        },
+        "context7": {
+            "command": "c7-mcp-server",
+            "args": []
+        },
+        "serena": {
+            "command": "python",
+            "args": [
+                "-m",
+                "serena"
             ],
-            "disabled": true
+            "env": {
+                "PYTHONPATH": "./.claude/mcp/serena/src"
+            }
+        },
+        "figma": {
+            "command": "claude",
+            "args": [
+                "mcp",
+                "add",
+                "--transport",
+                "http",
+                "figma",
+                "https://mcp.figma.com/mcp",
+                "-s",
+                "project"
+            ],
+            "disabled": true,
+            "_comment": "Figma MCP is added via HTTP transport. The actual config for HTTP servers usually differs or is managed by Claude internal storage, but we format it here for reference or future direct support. For now, users should run the command manually or we use a compatible JSON structure.",
+            "type": "http",
+            "url": "https://mcp.figma.com/mcp"
         }
     }
 }
