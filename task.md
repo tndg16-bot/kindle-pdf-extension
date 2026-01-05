@@ -68,3 +68,37 @@
 - **Current Status**: All Phases Completed (2026-01-05)
 - **Achievement**: Portfolio V2 Successfully Launched with Real-time Sync.
 - **Next Steps**: Regular content updates via Obsidian.
+
+---
+
+## 🤖 Agent Team Assignments (2026-01-05)
+
+### Antigravity (Project Manager / Full-Stack)
+- **担当**: 全体統括、API実装、GitHub連携、進捗追跡システム
+- **ツール**: Browser Subagent (UI検証), File/Code Editing
+
+### Codex (Code Review / Debug)
+- **担当**: コードレビュー、型チェック、リファクタリング提案
+- **ツール**: Codex CLI (`codex` ターミナルで実行中)
+
+### Local AI (Ollama via ngrok)
+- **担当**: Gamified Mandala向けAI提案、長文生成
+- **ツール**: Ollama API (`ngrok` 経由で公開中)
+
+---
+
+## 🧪 Verification Tasks (Browser Testing)
+
+- [ ] **Dashboard進捗表示の確認**
+    - 担当: Antigravity (Browser Subagent)
+    - 確認項目: 合計/完了/進行中/未着手のカウントが正しいか
+- [ ] **予約フォームの動作確認**
+    - 担当: Antigravity (Browser Subagent)
+    - 確認項目: フォーム入力→送信→確認メッセージ表示
+- [ ] **レスポンシブ表示の確認**
+    - 担当: Antigravity (Browser Subagent)
+    - 確認項目: モバイル/タブレット/デスクトップでのレイアウト崩れ
+- [ ] **パフォーマンス検証**
+    - 担当: Codex (Lighthouse)
+    - 確認項目: Core Web Vitals スコア
+

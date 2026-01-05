@@ -266,35 +266,120 @@ export default function BookingForm({ className = "" }: { className?: string }) 
                     </div>
 
                     {/* Row 5: Preferred Dates */}
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                        {/* Date 1 */}
                         <div className="space-y-2">
                             <label className="flex items-center gap-2 text-sm font-medium text-zinc-300">
                                 <Calendar size={16} className="text-teal-400" />
                                 希望日時（第1希望） <span className="text-rose-400">*</span>
                             </label>
-                            <input
-                                type="datetime-local"
-                                name="preferredDate1"
-                                required
-                                value={formData.preferredDate1}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
-                            />
+                            <div className="grid grid-cols-2 gap-3">
+                                <input
+                                    type="date"
+                                    name="preferredDate1Date"
+                                    required
+                                    value={formData.preferredDate1.split('T')[0] || ''}
+                                    onChange={(e) => {
+                                        const time = formData.preferredDate1.split('T')[1] || '13:00';
+                                        setFormData({ ...formData, preferredDate1: `${e.target.value}T${time}` });
+                                    }}
+                                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
+                                />
+                                <select
+                                    name="preferredDate1Time"
+                                    required
+                                    value={formData.preferredDate1.split('T')[1] || '13:00'}
+                                    onChange={(e) => {
+                                        const date = formData.preferredDate1.split('T')[0] || '';
+                                        setFormData({ ...formData, preferredDate1: `${date}T${e.target.value}` });
+                                    }}
+                                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
+                                >
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                </select>
+                            </div>
                         </div>
+
+                        {/* Date 2 */}
                         <div className="space-y-2">
                             <label className="flex items-center gap-2 text-sm font-medium text-zinc-300">
                                 <Calendar size={16} className="text-zinc-500" />
                                 希望日時（第2希望）
                             </label>
-                            <input
-                                type="datetime-local"
-                                name="preferredDate2"
-                                value={formData.preferredDate2}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
-                            />
+                            <div className="grid grid-cols-2 gap-3">
+                                <input
+                                    type="date"
+                                    name="preferredDate2Date"
+                                    value={formData.preferredDate2.split('T')[0] || ''}
+                                    onChange={(e) => {
+                                        const time = formData.preferredDate2.split('T')[1] || '13:00';
+                                        setFormData({ ...formData, preferredDate2: `${e.target.value}T${time}` });
+                                    }}
+                                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
+                                />
+                                <select
+                                    name="preferredDate2Time"
+                                    value={formData.preferredDate2.split('T')[1] || '13:00'}
+                                    onChange={(e) => {
+                                        const date = formData.preferredDate2.split('T')[0] || '';
+                                        setFormData({ ...formData, preferredDate2: `${date}T${e.target.value}` });
+                                    }}
+                                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20 transition-all [color-scheme:dark]"
+                                >
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
 
                     {/* Row 6: Additional Message */}
                     <div className="space-y-2">
