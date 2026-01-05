@@ -87,13 +87,19 @@ function parseYaritaiList(content: string): { projects: Project[]; stats: Stats 
         }
 
 
+        // Match completed items in Done section (exclude date entries like "2026-01-05")
         const doneMatch = line.match(/^\d+\.\s*\*\*(.+?)\*\*:/);
         if (doneMatch && inDoneSection) {
-            projects.push({
-                name: doneMatch[1].trim(),
-                status: 'completed',
-            });
+            const projectName = doneMatch[1].trim();
+            // Skip date entries (format: YYYY-MM-DD or similar)
+            if (!/^\d{4}-\d{2}-\d{2}/.test(projectName)) {
+                projects.push({
+                    name: projectName,
+                    status: 'completed',
+                });
+            }
         }
+
 
         const inProgressMatch = line.match(/^-\s*\*\*(.+?)\*\*\s*-\s*(.+)/);
         if (inProgressMatch && inAntigravitySection) {
