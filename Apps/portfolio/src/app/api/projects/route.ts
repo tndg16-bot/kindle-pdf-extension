@@ -69,7 +69,7 @@ async function fetchGitHubIssues(): Promise<GitHubIssue[]> {
 
     const response = await fetch(url, {
         headers,
-        next: { revalidate: 60 } // Cache for 1 minute
+        cache: 'no-store' // Disable caching for real-time data
     });
 
     if (!response.ok) {
