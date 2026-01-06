@@ -1,13 +1,23 @@
 "use client";
 
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, Circle, TrendingUp, Activity } from "lucide-react";
+import { CheckCircle2, Clock, Circle, TrendingUp, Activity, ChevronRight } from "lucide-react";
+import ProjectModal from "./ProjectModal";
+
+interface Subtask {
+    title: string;
+    completed: boolean;
+}
 
 interface Project {
     name: string;
     status: "not_started" | "in_progress" | "completed";
     description?: string;
+    issueNumber?: number;
+    subtasks?: Subtask[];
+    progress?: number;
 }
 
 interface Stats {
@@ -29,6 +39,10 @@ export default function Dashboard() {
     const [activities, setActivities] = useState<ActivityItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [lastUpdated, setLastUpdated] = useState<string>("");
+
+    // Modal state
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -63,6 +77,11 @@ export default function Dashboard() {
         const interval = setInterval(fetchData, 5 * 60 * 1000);
         return () => clearInterval(interval);
     }, []);
+
+    const handleProjectClick = (project: Project) => {
+        setSelectedProject(project);
+        setIsModalOpen(true);
+    };
 
     const getStatusIcon = (status: string) => {
         switch (status) {
@@ -145,11 +164,12 @@ export default function Dashboard() {
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+                                    onClick={() => handleProjectClick(project)}
+                                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer group border border-transparent hover:border-teal-500/20"
                                 >
                                     {getStatusIcon(project.status)}
                                     <div className="flex-1 min-w-0">
-                                        <div className="text-sm font-medium text-white truncate">
+                                        <div className="text-sm font-medium text-white truncate group-hover:text-teal-400 transition-colors">
                                             {project.name}
                                         </div>
                                         {project.description && (
@@ -157,13 +177,24 @@ export default function Dashboard() {
                                                 {project.description}
                                             </div>
                                         )}
+                                        {project.progress !== undefined && project.progress > 0 && (
+                                            <div className="w-full h-1 bg-zinc-800 rounded-full mt-2 overflow-hidden">
+                                                <div
+                                                    className="h-full bg-teal-500/50 rounded-full"
+                                                    style={{ width: `${project.progress}%` }}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
-                                    <span className={`text-xs px-2 py-1 rounded-full ${project.status === "completed" ? "bg-emerald-500/20 text-emerald-400" :
-                                        project.status === "in_progress" ? "bg-amber-500/20 text-amber-400" :
-                                            "bg-zinc-500/20 text-zinc-400"
-                                        }`}>
-                                        {getStatusLabel(project.status)}
-                                    </span>
+                                    <div className="flex flex-col items-end gap-1">
+                                        <span className={`text-xs px-2 py-1 rounded-full ${project.status === "completed" ? "bg-emerald-500/20 text-emerald-400" :
+                                            project.status === "in_progress" ? "bg-amber-500/20 text-amber-400" :
+                                                "bg-zinc-500/20 text-zinc-400"
+                                            }`}>
+                                            {getStatusLabel(project.status)}
+                                        </span>
+                                        <ChevronRight size={14} className="text-zinc-600 group-hover:text-teal-400 transition-colors opacity-0 group-hover:opacity-100" />
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
@@ -200,6 +231,12 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
+
+                <ProjectModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    project={selectedProject}
+                />
             </motion.div>
         </section>
     );
