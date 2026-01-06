@@ -63,31 +63,34 @@ export default function BookingForm({ className = "" }: { className?: string }) 
         setIsError(false);
 
         try {
-            // Google Forms URLが設定されている場合は実際に送信
-            if (GOOGLE_FORMS_CONFIG.actionUrl) {
-                const googleFormData = new FormData();
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.name, formData.name);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.email, formData.email);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.occupation, formData.occupation);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.goal, formData.goal);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.motivation, formData.motivation);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.preferredDate1, formData.preferredDate1);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.preferredDate2, formData.preferredDate2);
-                googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.message, formData.message);
-
-                // Google Formsへの送信（no-corsモード）
-                await fetch(GOOGLE_FORMS_CONFIG.actionUrl, {
-                    method: 'POST',
-                    body: googleFormData,
-                    mode: 'no-cors',
-                });
-
-                console.log('📧 Form submitted to Google Forms');
-            } else {
-                // 開発モード：シミュレーション送信
-                console.log('🧪 Development mode - simulating form submission:', formData);
-                await new Promise(resolve => setTimeout(resolve, 1000));
+            if (!GOOGLE_FORMS_CONFIG.actionUrl) {
+                throw new Error('Google Forms URL is not configured');
             }
+
+            const googleFormData = new FormData();
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.name, formData.name);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.email, formData.email);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.occupation, formData.occupation);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.goal, formData.goal);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.motivation, formData.motivation);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.preferredDate1, formData.preferredDate1);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.preferredDate2, formData.preferredDate2);
+            googleFormData.append(GOOGLE_FORMS_CONFIG.entryIds.message, formData.message);
+
+            // Google Formsへの送信（no-corsモード）
+            const response = await fetch(GOOGLE_FORMS_CONFIG.actionUrl, {
+                method: 'POST',
+                body: googleFormData,
+                mode: 'no-cors',
+            });
+
+            const isOpaqueSuccess = response.type === 'opaque';
+
+            if (!isOpaqueSuccess && !response.ok) {
+                throw new Error(`Google Forms submission failed with status: ${response.status || 'unknown'}`);
+            }
+
+            console.log('📧 Form submitted to Google Forms', { responseType: response.type, status: response.status });
 
             setIsSubmitted(true);
         } catch (error) {
