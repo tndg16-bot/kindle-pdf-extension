@@ -138,8 +138,8 @@ export default function Dashboard() {
                             <TrendingUp className="h-5 w-5 text-teal-400" />
                             <h3 className="text-xl font-bold text-white">プロジェクト一覧</h3>
                         </div>
-                        <div className="space-y-3">
-                            {projects.slice(0, 8).map((project, index) => (
+                        <div className="space-y-3 max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+                            {projects.map((project, index) => (
                                 <motion.div
                                     key={project.name}
                                     initial={{ opacity: 0, x: -10 }}
@@ -175,7 +175,7 @@ export default function Dashboard() {
                             <Activity className="h-5 w-5 text-teal-400" />
                             <h3 className="text-xl font-bold text-white">最近の活動</h3>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-4 max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
                             {activities.length > 0 ? (
                                 activities.map((activity, index) => (
                                     <motion.div
