@@ -1,21 +1,23 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 
 // Environment variables for GitHub integration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_OWNER = process.env.GITHUB_OWNER || 'tndg16-bot';
 const GITHUB_REPO = process.env.GITHUB_REPO || 'papa';
-const GITHUB_FILE_PATH = process.env.GITHUB_FILE_PATH || '本山貴裕/やりたいことリスト.md';
 
-// Fallback for local development
-const OBSIDIAN_VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || 'C:/Users/chatg/Obsidian Vault/papa';
-const YARITAI_FILE = '本山貴裕/やりたいことリスト.md';
+interface GitHubIssue {
+    number: number;
+    title: string;
+    state: string;
+    labels: { name: string }[];
+    body: string | null;
+}
 
 interface Project {
     name: string;
     status: 'not_started' | 'in_progress' | 'completed';
     description?: string;
+    issueNumber?: number;
 }
 
 interface Stats {
@@ -25,93 +27,80 @@ interface Stats {
     notStarted: number;
 }
 
-function parseYaritaiList(content: string): { projects: Project[]; stats: Stats } {
-    const projects: Project[] = [];
-    const lines = content.split('\n');
-
-    let inWantSection = false;
-    let inDoneSection = false;
-    let inAntigravitySection = false;
-
-    for (const line of lines) {
-        if (line.includes('やりたいことリスト')) {
-            inWantSection = true;
-            inDoneSection = false;
-            inAntigravitySection = false;
-            continue;
-        }
-        if (line.includes('## ✅ やったことリスト')) {
-            inWantSection = false;
-            inDoneSection = true;
-            inAntigravitySection = false;
-            continue;
-        }
-        if (line.includes('## 🤖 Antigravityからの提案')) {
-            inWantSection = false;
-            inDoneSection = false;
-            inAntigravitySection = true;
-            continue;
-        }
-        if (line.startsWith('## ') && !line.includes('やりたい') && !line.includes('やったこと') && !line.includes('Antigravity')) {
-            inWantSection = false;
-            inDoneSection = false;
-            inAntigravitySection = false;
-            continue;
-        }
-
-        // Match M-items with various status formats:
-        // [ ] = not started, [x] = completed, [/] = in progress, [3/10] = in progress with ratio
-        const mItemMatch = line.match(/^\s*-\s*\[([^\]]*)\]\s*\*\*M\d+:\s*(.+?)\*\*/);
-        if (mItemMatch && inWantSection) {
-            const statusMark = mItemMatch[1].trim();
-            let status: 'not_started' | 'in_progress' | 'completed' = 'not_started';
-            let progress: string | undefined;
-
-            if (statusMark === 'x') {
-                status = 'completed';
-            } else if (statusMark === '/') {
-                status = 'in_progress';
-            } else if (/^\d+\/\d+$/.test(statusMark)) {
-                // Format like [3/10] - treat as in_progress with progress info
-                status = 'in_progress';
-                progress = statusMark;
-            } else if (statusMark === '') {
-                status = 'not_started';
-            }
-
-            projects.push({
-                name: mItemMatch[2].trim(),
-                status,
-                description: progress ? `進捗: ${progress}` : undefined,
-            });
-        }
-
-
-        // Match completed items in Done section (exclude date entries like "2026-01-05")
-        const doneMatch = line.match(/^\d+\.\s*\*\*(.+?)\*\*:/);
-        if (doneMatch && inDoneSection) {
-            const projectName = doneMatch[1].trim();
-            // Skip date entries (format: YYYY-MM-DD or similar)
-            if (!/^\d{4}-\d{2}-\d{2}/.test(projectName)) {
-                projects.push({
-                    name: projectName,
-                    status: 'completed',
-                });
-            }
-        }
-
-
-        const inProgressMatch = line.match(/^-\s*\*\*(.+?)\*\*\s*-\s*(.+)/);
-        if (inProgressMatch && inAntigravitySection) {
-            if (line.includes('進捗') || line.includes('進行中')) {
-                projects.push({
-                    name: inProgressMatch[1].trim(),
-                    status: 'in_progress',
-                    description: inProgressMatch[2].trim(),
-                });
-            }
-        }
+function parseIssueStatus(issue: GitHubIssue): 'not_started' | 'in_progress' | 'completed' {
+    // Check if issue is closed
+    if (issue.state === 'closed') {
+        return 'completed';
     }
+
+    // Check for in-progress labels
+    const inProgressLabels = ['in-progress', 'in progress', 'wip', 'doing'];
+    const hasInProgressLabel = issue.labels.some(label =>
+        inProgressLabels.includes(label.name.toLowerCase())
+    );
+
+    if (hasInProgressLabel) {
+        return 'in_progress';
+    }
+
+    // Check title for M-number items with progress indicators
+    const progressMatch = issue.title.match(/\[(\d+)\/(\d+)\]/);
+    if (progressMatch) {
+        const current = parseInt(progressMatch[1]);
+        const total = parseInt(progressMatch[2]);
+        if (current > 0 && current < total) return 'in_progress';
+        if (current >= total) return 'completed';
+    }
+
+    // Default to not_started for open issues
+    return 'not_started';
+}
+
+async function fetchGitHubIssues(): Promise<GitHubIssue[]> {
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues?state=all&per_page=100`;
+
+    const headers: HeadersInit = {
+        'Accept': 'application/vnd.github.v3+json',
+    };
+
+    if (GITHUB_TOKEN) {
+        headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;
+    }
+
+    const response = await fetch(url, {
+        headers,
+        next: { revalidate: 60 } // Cache for 1 minute
+    });
+
+    if (!response.ok) {
+        throw new Error(`GitHub API responded with ${response.status}: ${response.statusText}`);
+    }
+
+    const issues: GitHubIssue[] = await response.json();
+
+    // Filter to only M-numbered issues (project items)
+    return issues.filter(issue =>
+        issue.title.match(/^\[M\d+\]/) ||
+        issue.title.includes('[Portfolio]') ||
+        issue.title.includes('[Infra]')
+    );
+}
+
+function parseGitHubIssues(issues: GitHubIssue[]): { projects: Project[]; stats: Stats } {
+    const projects: Project[] = issues.map(issue => {
+        // Extract clean name from title (remove [M1] etc.)
+        const cleanName = issue.title
+            .replace(/^\[M\d+\]\s*/, '')
+            .replace(/^\[Portfolio\]\s*/, '')
+            .replace(/^\[Infra\]\s*/, '');
+
+        return {
+            name: cleanName,
+            status: parseIssueStatus(issue),
+            description: issue.body?.slice(0, 100) || undefined,
+            issueNumber: issue.number,
+        };
+    });
 
     const stats: Stats = {
         total: projects.length,
@@ -123,67 +112,24 @@ function parseYaritaiList(content: string): { projects: Project[]; stats: Stats 
     return { projects, stats };
 }
 
-async function fetchFromGitHub(): Promise<string> {
-    if (!GITHUB_TOKEN) {
-        throw new Error('GITHUB_TOKEN is not set');
-    }
-
-    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeURIComponent(GITHUB_FILE_PATH)}`;
-    const response = await fetch(url, {
-        headers: {
-            'Authorization': `Bearer ${GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3.raw', // Request raw content directly
-        },
-        next: { revalidate: 300 } // Cache for 5 minutes (ISR)
-    });
-
-    if (!response.ok) {
-        throw new Error(`GitHub API responded with ${response.status}: ${response.statusText}`);
-    }
-
-    // With v3.raw media type, the body is the raw content
-    return response.text();
-}
-
 export async function GET() {
     try {
-        let content = '';
-
-        // Strategy: Try GitHub first if configured, otherwise fallback to local fs (dev mode)
-        if (process.env.GITHUB_TOKEN) {
-            try {
-                content = await fetchFromGitHub();
-                console.log('Successfully fetched project data from GitHub');
-            } catch (ghError) {
-                console.error('Failed to fetch from GitHub, falling back to local if available:', ghError);
-                if (process.env.NODE_ENV === 'development') {
-                    const filePath = path.join(OBSIDIAN_VAULT_PATH, YARITAI_FILE);
-                    content = await fs.readFile(filePath, 'utf-8');
-                } else {
-                    throw ghError; // Re-throw in production if GitHub fails
-                }
-            }
-        } else {
-            // Local development without token
-            const filePath = path.join(OBSIDIAN_VAULT_PATH, YARITAI_FILE);
-            content = await fs.readFile(filePath, 'utf-8');
-        }
-
-        const { projects, stats } = parseYaritaiList(content);
+        const issues = await fetchGitHubIssues();
+        const { projects, stats } = parseGitHubIssues(issues);
 
         return NextResponse.json({
             success: true,
             projects,
             stats,
             lastUpdated: new Date().toISOString(),
-            source: process.env.GITHUB_TOKEN ? 'github' : 'local'
+            source: 'github-issues'
         });
     } catch (error) {
-        console.error('Error reading project data:', error);
+        console.error('Error fetching GitHub issues:', error);
         return NextResponse.json(
             {
                 success: false,
-                error: 'Failed to read project data',
+                error: 'Failed to fetch GitHub issues',
                 projects: [],
                 stats: { total: 0, inProgress: 0, completed: 0, notStarted: 0 }
             },
