@@ -61,7 +61,7 @@ async function fetchGitHubCommits(): Promise<GitHubCommit[]> {
 
     const response = await fetch(url, {
         headers,
-        next: { revalidate: 60 } // Cache for 1 minute
+        cache: 'no-store' // Disable caching for real-time data
     });
 
     if (!response.ok) {
@@ -93,13 +93,23 @@ export async function GET() {
         });
     } catch (error) {
         console.error('Error fetching GitHub commits:', error);
-        return NextResponse.json(
-            {
-                success: false,
-                error: 'Failed to fetch activity data',
-                activities: []
-            },
-            { status: 500 }
-        );
+
+        // Return fallback activities
+        const fallbackActivities: Activity[] = [
+            { date: '2026-01-07', message: 'Add custom dark-themed scrollbar with teal accent', type: 'update', sha: '093b1ae' },
+            { date: '2026-01-07', message: 'Add scrollable lists to Dashboard', type: 'milestone', sha: '7319b88' },
+            { date: '2026-01-07', message: 'Add fallback data when GitHub API fails', type: 'completed', sha: '00e26e3' },
+            { date: '2026-01-07', message: 'Switch activities API to GitHub commits integration', type: 'milestone', sha: 'eb718d0' },
+            { date: '2026-01-07', message: 'Switch API from yaritai list to GitHub Issues integration', type: 'milestone', sha: '45bed17' },
+            { date: '2026-01-06', message: 'Add About page and Header to Sessions page', type: 'milestone', sha: '7fb7e0a' },
+        ];
+
+        return NextResponse.json({
+            success: true,
+            activities: fallbackActivities,
+            lastUpdated: new Date().toISOString(),
+            source: 'fallback'
+        });
     }
 }
+
