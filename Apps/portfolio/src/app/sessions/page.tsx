@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { CheckCircle2, ArrowRight, Clock, Video, MessageCircle, ShieldCheck, HelpCircle, CalendarDays } from "lucide-react";
 import BookingForm from "@/components/BookingForm";
+import Header from "@/components/Header";
 import Link from "next/link";
 
 export default function SessionsPage() {
@@ -56,208 +57,212 @@ export default function SessionsPage() {
     ];
 
     return (
-        <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24 pb-16">
-            {/* Hero */}
-            <section className="w-full max-w-4xl px-4 mb-16">
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="text-center"
-                >
-                    <motion.div variants={itemVariants} className="mb-4 flex justify-center">
-                        <span className="inline-block rounded-full bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-400 border border-teal-500/20">
-                            Life Self-Determination Session
-                        </span>
+        <>
+            <Header />
+            <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24 pb-16">
+                {/* Hero */}
+                <section className="w-full max-w-4xl px-4 mb-16">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}
+                        className="text-center"
+                    >
+                        <motion.div variants={itemVariants} className="mb-4 flex justify-center">
+                            <span className="inline-block rounded-full bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-400 border border-teal-500/20">
+                                Life Self-Determination Session
+                            </span>
+                        </motion.div>
+                        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                            自分の人生を、<br />
+                            <span className="text-forest">自分で決める力</span>を取り戻す
+                        </motion.h1>
+                        <motion.p variants={itemVariants} className="text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                            情報過多の時代に、外からの「正解」ではなく、内なる「確信」を再構築する。<br />
+                            1on1の対話を通じて、あなたの判断軸を研ぎ澄まします。
+                        </motion.p>
                     </motion.div>
-                    <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                        自分の人生を、<br />
-                        <span className="text-forest">自分で決める力</span>を取り戻す
-                    </motion.h1>
-                    <motion.p variants={itemVariants} className="text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                        情報過多の時代に、外からの「正解」ではなく、内なる「確信」を再構築する。<br />
-                        1on1の対話を通じて、あなたの判断軸を研ぎ澄まします。
-                    </motion.p>
-                </motion.div>
-            </section>
+                </section>
 
-            {/* Who is this for */}
-            <section className="w-full max-w-4xl px-4 mb-20">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={containerVariants}
-                    className="glass-panel rounded-3xl p-8 md:p-12 border border-white/5"
-                >
-                    <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                        <CheckCircle2 className="text-teal-400" /> こんな方へ
+                {/* Who is this for */}
+                <section className="w-full max-w-4xl px-4 mb-20">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={containerVariants}
+                        className="glass-panel rounded-3xl p-8 md:p-12 border border-white/5"
+                    >
+                        <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                            <CheckCircle2 className="text-teal-400" /> こんな方へ
+                        </motion.h2>
+                        <ul className="space-y-4">
+                            {targetAudience.map((item, i) => (
+                                <motion.li key={i} variants={itemVariants} className="flex items-start gap-3 text-zinc-200">
+                                    <ArrowRight className="text-teal-400 shrink-0 mt-1" size={18} />
+                                    <span>{item}</span>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                </section>
+
+                {/* Before / After */}
+                <section className="w-full max-w-5xl px-4 mb-20">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-bold text-white mb-10 text-center"
+                    >
+                        セッションで得られる変化
                     </motion.h2>
-                    <ul className="space-y-4">
-                        {targetAudience.map((item, i) => (
-                            <motion.li key={i} variants={itemVariants} className="flex items-start gap-3 text-zinc-200">
-                                <ArrowRight className="text-teal-400 shrink-0 mt-1" size={18} />
-                                <span>{item}</span>
-                            </motion.li>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {transformations.map((t, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="glass-panel rounded-2xl p-6 border border-white/5 text-center"
+                            >
+                                <div className="text-zinc-400 text-sm mb-2">Before</div>
+                                <p className="text-zinc-300 mb-4 line-through decoration-red-400/50">{t.before}</p>
+                                <ArrowRight className="mx-auto text-teal-400 mb-4" />
+                                <div className="text-teal-400 text-sm mb-2">After</div>
+                                <p className="text-white font-semibold">{t.after}</p>
+                            </motion.div>
                         ))}
-                    </ul>
-                </motion.div>
-            </section>
+                    </div>
+                </section>
 
-            {/* Before / After */}
-            <section className="w-full max-w-5xl px-4 mb-20">
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-white mb-10 text-center"
-                >
-                    セッションで得られる変化
-                </motion.h2>
-                <div className="grid md:grid-cols-3 gap-6">
-                    {transformations.map((t, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="glass-panel rounded-2xl p-6 border border-white/5 text-center"
-                        >
-                            <div className="text-zinc-400 text-sm mb-2">Before</div>
-                            <p className="text-zinc-300 mb-4 line-through decoration-red-400/50">{t.before}</p>
-                            <ArrowRight className="mx-auto text-teal-400 mb-4" />
-                            <div className="text-teal-400 text-sm mb-2">After</div>
-                            <p className="text-white font-semibold">{t.after}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+                {/* Session Flow */}
+                <section className="w-full max-w-4xl px-4 mb-20">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-bold text-white mb-10 text-center flex items-center justify-center gap-3"
+                    >
+                        <Clock className="text-teal-400" /> セッションの進め方
+                    </motion.h2>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {sessionFlow.map((s, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="glass-panel rounded-2xl p-6 border border-white/5"
+                            >
+                                <div className="w-10 h-10 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold mb-4">
+                                    {s.step}
+                                </div>
+                                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
+                                <p className="text-zinc-400 text-sm">{s.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="mt-8 flex flex-wrap justify-center gap-6 text-zinc-300"
+                    >
+                        <span className="flex items-center gap-2"><Clock size={18} className="text-teal-400" /> 60〜90分</span>
+                        <span className="flex items-center gap-2"><Video size={18} className="text-teal-400" /> オンライン (Zoom)</span>
+                        <span className="flex items-center gap-2"><ShieldCheck size={18} className="text-teal-400" /> 完全守秘</span>
+                    </motion.div>
+                </section>
 
-            {/* Session Flow */}
-            <section className="w-full max-w-4xl px-4 mb-20">
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-white mb-10 text-center flex items-center justify-center gap-3"
-                >
-                    <Clock className="text-teal-400" /> セッションの進め方
-                </motion.h2>
-                <div className="grid md:grid-cols-3 gap-6">
-                    {sessionFlow.map((s, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="glass-panel rounded-2xl p-6 border border-white/5"
-                        >
-                            <div className="w-10 h-10 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold mb-4">
-                                {s.step}
-                            </div>
-                            <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                            <p className="text-zinc-400 text-sm">{s.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="mt-8 flex flex-wrap justify-center gap-6 text-zinc-300"
-                >
-                    <span className="flex items-center gap-2"><Clock size={18} className="text-teal-400" /> 60〜90分</span>
-                    <span className="flex items-center gap-2"><Video size={18} className="text-teal-400" /> オンライン (Zoom)</span>
-                    <span className="flex items-center gap-2"><ShieldCheck size={18} className="text-teal-400" /> 完全守秘</span>
-                </motion.div>
-            </section>
+                {/* Pricing */}
+                <section className="w-full max-w-3xl px-4 mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="glass-panel rounded-3xl p-8 md:p-12 text-center border border-teal-500/20"
+                    >
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">料金</h2>
+                        <p className="text-zinc-300 mb-6">
+                            現在、<span className="text-teal-400 font-semibold">審査制</span>にてご案内しております。<br />
+                            詳細は個別にお伝えいたします。
+                        </p>
+                        <p className="text-sm text-zinc-500">※ 初回のみ特別価格をご用意しています</p>
+                    </motion.div>
+                </section>
 
-            {/* Pricing */}
-            <section className="w-full max-w-3xl px-4 mb-20">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="glass-panel rounded-3xl p-8 md:p-12 text-center border border-teal-500/20"
-                >
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">料金</h2>
-                    <p className="text-zinc-300 mb-6">
-                        現在、<span className="text-teal-400 font-semibold">審査制</span>にてご案内しております。<br />
-                        詳細は個別にお伝えいたします。
-                    </p>
-                    <p className="text-sm text-zinc-500">※ 初回のみ特別価格をご用意しています</p>
-                </motion.div>
-            </section>
+                {/* FAQ */}
+                <section className="w-full max-w-4xl px-4 mb-20">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-bold text-white mb-10 text-center flex items-center justify-center gap-3"
+                    >
+                        <HelpCircle className="text-teal-400" /> よくある質問
+                    </motion.h2>
+                    <div className="space-y-4">
+                        {faqs.map((faq, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.05 }}
+                                className="glass-panel rounded-xl p-6 border border-white/5"
+                            >
+                                <h3 className="text-white font-semibold mb-2 flex items-start gap-2">
+                                    <MessageCircle className="text-teal-400 shrink-0 mt-1" size={18} />
+                                    {faq.q}
+                                </h3>
+                                <p className="text-zinc-400 pl-6">{faq.a}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
 
-            {/* FAQ */}
-            <section className="w-full max-w-4xl px-4 mb-20">
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-white mb-10 text-center flex items-center justify-center gap-3"
-                >
-                    <HelpCircle className="text-teal-400" /> よくある質問
-                </motion.h2>
-                <div className="space-y-4">
-                    {faqs.map((faq, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.05 }}
-                            className="glass-panel rounded-xl p-6 border border-white/5"
-                        >
-                            <h3 className="text-white font-semibold mb-2 flex items-start gap-2">
-                                <MessageCircle className="text-teal-400 shrink-0 mt-1" size={18} />
-                                {faq.q}
-                            </h3>
-                            <p className="text-zinc-400 pl-6">{faq.a}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+                {/* After Booking Flow */}
+                <section className="w-full max-w-3xl px-4 mb-20">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="glass-panel rounded-3xl p-8 md:p-12 border border-white/5"
+                    >
+                        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <CalendarDays className="text-teal-400" /> お申込み後の流れ
+                        </h2>
+                        <ol className="space-y-4 text-zinc-300">
+                            <li className="flex items-start gap-3">
+                                <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">1</span>
+                                <span>フォーム送信後、<strong className="text-white">24時間以内</strong>にメールで返信いたします</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">2</span>
+                                <span>日程調整リンクから、ご都合の良い日時をお選びください</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">3</span>
+                                <span>当日、Zoomリンクをお送りします</span>
+                            </li>
+                        </ol>
+                    </motion.div>
+                </section>
 
-            {/* After Booking Flow */}
-            <section className="w-full max-w-3xl px-4 mb-20">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="glass-panel rounded-3xl p-8 md:p-12 border border-white/5"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                        <CalendarDays className="text-teal-400" /> お申込み後の流れ
-                    </h2>
-                    <ol className="space-y-4 text-zinc-300">
-                        <li className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">1</span>
-                            <span>フォーム送信後、<strong className="text-white">24時間以内</strong>にメールで返信いたします</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">2</span>
-                            <span>日程調整リンクから、ご都合の良い日時をお選びください</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold shrink-0">3</span>
-                            <span>当日、Zoomリンクをお送りします</span>
-                        </li>
-                    </ol>
-                </motion.div>
-            </section>
+                {/* Booking Form */}
+                <BookingForm />
 
-            {/* Booking Form */}
-            <BookingForm />
-
-            {/* Back Link */}
-            <section className="w-full max-w-4xl px-4 py-12 text-center">
-                <Link href="/" className="text-zinc-400 hover:text-teal-400 transition-colors text-sm">
-                    ← トップページへ戻る
-                </Link>
-            </section>
-        </main>
+                {/* Back Link */}
+                <section className="w-full max-w-4xl px-4 py-12 text-center">
+                    <Link href="/" className="text-zinc-400 hover:text-teal-400 transition-colors text-sm">
+                        ← トップページへ戻る
+                    </Link>
+                </section>
+            </main>
+        </>
     );
 }
+
