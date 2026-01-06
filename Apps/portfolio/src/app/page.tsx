@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Compass, Cpu, Target, CheckCircle2, Sparkles, Zap, Shield } from "lucide-react";
+import Header from "@/components/Header";
 import Dashboard from "@/components/Dashboard";
 import BookingForm from "@/components/BookingForm";
 
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-20">
+      <Header />
       {/* Hero Section */}
       <section id="section-hero" className="relative flex min-h-screen w-full flex-col items-center justify-center px-4">
         <motion.div
