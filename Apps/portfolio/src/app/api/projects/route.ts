@@ -34,7 +34,7 @@ function parseYaritaiList(content: string): { projects: Project[]; stats: Stats 
     let inAntigravitySection = false;
 
     for (const line of lines) {
-        if (line.includes('## 🚀 やりたいことリスト')) {
+        if (line.includes('やりたいことリスト')) {
             inWantSection = true;
             inDoneSection = false;
             inAntigravitySection = false;
