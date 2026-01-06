@@ -192,5 +192,48 @@
 
 ---
 
-*Last Updated: 2026-01-06 by Antigravity (GitHub PR Workflow)*
+## 8. 🚀 並列開発ベストプラクティス（必須遵守）
+
+以下のルールは **全エージェント（Antigravity, Claude Code, Codex, Ollama）** が必ず守ること。
+
+### A. Issue先行原則
+- **作業開始前に必ずGitHub Issueを作成する**
+- Issue番号を使ってコミットメッセージで参照（例: `closes #19`）
+- 緊急修正（hotfix）の場合も、事後でもIssue作成すること
+
+### B. 1機能1コミット（Atomic Commit）
+- 複数の機能を1つのコミットに混ぜない
+- 修正と機能追加を混ぜない
+- レビュー・revertがしやすい粒度を維持
+
+### C. コミットメッセージ規約（Conventional Commits）
+| プレフィックス | 用途 |
+|---------------|------|
+| `feat:` | 新機能追加 |
+| `fix:` | バグ修正 |
+| `docs:` | ドキュメントのみ |
+| `style:` | フォーマット（機能影響なし） |
+| `refactor:` | リファクタリング |
+| `test:` | テスト追加・修正 |
+| `chore:` | ビルド・設定変更 |
+
+### D. 3分ルール
+- AIに指示を出して **3分悩んだら自分で書く**
+- 迷うより手を動かす
+- 複雑すぎるタスクは**分割して再度AIに依頼**
+
+### E. 並列実行優先
+- 依存関係がないタスクは**同時に実行**する
+- 例: Issue作成とファイル作成を並列で実行
+- 直列より並列を常に意識
+
+### F. Web → GitHub → Chat → Local フロー
+1. **Web**: Claude Code Webで0→1生成（ビルドエラーOK）
+2. **GitHub**: push/PRで連携
+3. **Chat**: Antigravity等でレビュー・修正
+4. **Local**: 最終手段としてハンドライティング
+
+---
+
+*Last Updated: 2026-01-07 by Antigravity (Best Practices Added)*
 
