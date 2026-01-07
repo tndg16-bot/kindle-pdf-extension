@@ -1,8 +1,25 @@
 import { useState } from 'react'
 import './App.css'
 
+// LINE URL
+const LINE_URL = 'https://line.me/R/ti/p/@YOUR_LINE_ID' // TODO: 実際のLINE IDに変更
+
+// 選択肢の型定義
+interface QuestionOption {
+  text: string
+  type?: string
+  skill?: string
+  time?: string
+}
+
+interface Question {
+  id: number
+  question: string
+  options: QuestionOption[]
+}
+
 // 質問データ
-const questions = [
+const questions: Question[] = [
   {
     id: 1,
     question: 'もし1日だけ有名人になれるとしたら、何をする？',
@@ -55,6 +72,7 @@ const questions = [
   },
 ]
 
+
 // 診断結果データ
 const results = {
   writer: {
@@ -100,13 +118,19 @@ const results = {
 }
 
 type ResultType = keyof typeof results
+type Screen = 'start' | 'quiz' | 'result'
 
 function App() {
+  const [screen, setScreen] = useState<Screen>('start')
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
   const [result, setResult] = useState<ResultType | null>(null)
   const [showMBTI, setShowMBTI] = useState(false)
   const [selectedMBTI, setSelectedMBTI] = useState('')
+
+  const startQuiz = () => {
+    setScreen('quiz')
+  }
 
   const handleAnswer = (type: string) => {
     const newAnswers = [...answers, type]
@@ -125,10 +149,12 @@ function App() {
 
       const resultType = Object.entries(typeCounts).sort((a, b) => b[1] - a[1])[0]?.[0] as ResultType || 'writer'
       setResult(resultType)
+      setScreen('result')
     }
   }
 
   const restart = () => {
+    setScreen('start')
     setCurrentQuestion(0)
     setAnswers([])
     setResult(null)
@@ -138,8 +164,56 @@ function App() {
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
+  // スタート画面
+  if (screen === 'start') {
+    return (
+      <div className="app">
+        <div className="background-effects">
+          <div className="blob blob-1"></div>
+          <div className="blob blob-2"></div>
+        </div>
+
+        <div className="start-container">
+          <div className="start-card glass-card">
+            <div className="start-header">
+              <span className="start-emoji">🤖</span>
+              <h1 className="start-title">AI副業適性診断</h1>
+              <p className="start-subtitle">あなたに向いているAI副業がわかる！</p>
+            </div>
+
+            <div className="start-features">
+              <div className="feature-item">
+                <span className="feature-icon">⏱️</span>
+                <span>たった1分</span>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon">❓</span>
+                <span>5問の質問</span>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon">🎯</span>
+                <span>4タイプ判定</span>
+              </div>
+            </div>
+
+            <p className="start-description">
+              簡単な質問に答えるだけで、<br />
+              あなたの才能と相性の良いAI副業がわかります。
+            </p>
+
+            <button className="start-btn" onClick={startQuiz}>
+              🚀 診断スタート
+            </button>
+
+            <p className="start-note">※ 診断は無料です</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   // 結果画面
-  if (result) {
+  if (screen === 'result' && result) {
     const data = results[result]
     return (
       <div className="app">
@@ -218,7 +292,7 @@ function App() {
                 <li>✅ MBTIタイプ別 × AI副業 詳細分析</li>
                 <li>✅ 初回相談無料（通常¥5,000）</li>
               </ul>
-              <a href="#" className="cta-button" style={{ background: data.color }}>
+              <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="cta-button" style={{ background: data.color }}>
                 👇 今すぐ受け取る
               </a>
             </div>
@@ -243,6 +317,11 @@ function App() {
       </div>
 
       <div className="quiz-container">
+        <div className="quiz-header">
+          <span className="quiz-logo">🤖</span>
+          <span className="quiz-title">AI副業適性診断</span>
+        </div>
+
         <div className="quiz-card glass-card">
           <div className="progress-bar">
             <div className="progress-fill" style={{ width: `${progress}%` }}></div>
