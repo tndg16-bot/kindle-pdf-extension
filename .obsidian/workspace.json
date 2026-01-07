@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f19f902a36c6d985",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2025-08-19_Geminiによる自己分析と事業戦略メモ"
-            }
-          },
-          {
             "id": "fc72cbca73b68a06",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "開発ツール連携図.md",
+                "file": "初回オリエンテーション アジェンダ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "開発ツール連携図"
+              "title": "初回オリエンテーション アジェンダ"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -189,44 +174,46 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "9625a3ae9aecaf0c",
+  "active": "fc72cbca73b68a06",
   "lastOpenFiles": [
-    "初回オリエンテーション アジェンダ.md",
-    "プロジェクト一覧.md",
-    "開発ツール連携図.md",
-    "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
-    "task-manager/app/node_modules/@react-oauth/google/README.md",
-    "task-manager/app/node_modules/@react-oauth/google/package.json",
-    "task-manager/app/node_modules/@react-oauth/google/dist/index.js",
-    "task-manager/app/node_modules/@react-oauth/google/dist/index.esm.js",
-    "task-manager/app/node_modules/@react-oauth/google/dist/index.d.ts",
-    "task-manager/app/node_modules/@react-oauth/google/dist",
-    "task-manager/app/node_modules/jwt-decode/README.md",
-    "task-manager/app/node_modules/jwt-decode/package.json",
-    "task-manager/app/node_modules/jwt-decode/build/esm/index.js",
-    "task-manager/app/node_modules/jwt-decode/build/esm/index.d.ts",
-    "task-manager/app/node_modules/jwt-decode/build/cjs/package.json",
-    "task-manager/app/node_modules/jwt-decode/build/cjs/index.js",
-    "task-manager/app/node_modules/yocto-queue/readme.md",
-    "task-manager/app/node_modules/yallist/README.md",
-    "task-manager/app/node_modules/word-wrap/README.md",
-    "task-manager/app/node_modules/which/README.md",
-    "task-manager/app/node_modules/which/CHANGELOG.md",
-    "task-manager/app/node_modules/vite/README.md",
-    "task-manager/app/node_modules/vite/LICENSE.md",
-    "task-manager/app/node_modules/update-browserslist-db/README.md",
-    "task-manager/app/node_modules/typescript/SECURITY.md",
-    "task-manager/app/node_modules/typescript/README.md",
-    "task-manager/app/node_modules/type-check/README.md",
-    "task-manager/app/node_modules/ts-api-utils/README.md",
-    "task-manager/app/node_modules/ts-api-utils/LICENSE.md",
-    "task-manager/app/node_modules/strip-json-comments/readme.md",
-    "task-manager/app/node_modules/source-map-js/README.md",
-    "task-manager/app/node_modules/shebang-regex/readme.md",
-    "task-manager/app/node_modules/shebang-command/readme.md",
-    "task-manager/app/node_modules/semver/README.md",
-    "task-manager/app/node_modules/scheduler/README.md",
-    "task-manager/app/node_modules/rollup/README.md",
+    "本山貴裕/11_開発ツール連携図_事業構想/診断ツール設計書.md",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/index.js.map",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/rewrite-this.js",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/rewrite-live-references.js.map",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/rewrite-this.js.map",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/rewrite-live-references.js",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/normalize-and-load-metadata.js.map",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/lazy-modules.js.map",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/normalize-and-load-metadata.js",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/lazy-modules.js",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/lib/index.js",
+    "ai-diagnosis/node_modules/@babel/helper-module-transforms/README.md",
+    "ai-diagnosis/node_modules/electron-to-chromium/README.md",
+    "ai-diagnosis/node_modules/zod/README.md",
+    "ai-diagnosis/node_modules/@babel/parser/README.md",
+    "ai-diagnosis/node_modules/@babel/parser/CHANGELOG.md",
+    "ai-diagnosis/node_modules/@types/node/README.md",
+    "ai-diagnosis/node_modules/@babel/helper-compilation-targets/README.md",
+    "ai-diagnosis/node_modules/@babel/core/README.md",
+    "ai-diagnosis/node_modules/ignore/README.md",
+    "ai-diagnosis/node_modules/debug/README.md",
+    "ai-diagnosis/node_modules/@humanwhocodes/module-importer/README.md",
+    "ai-diagnosis/node_modules/@humanwhocodes/module-importer/CHANGELOG.md",
+    "ai-diagnosis/node_modules/chalk/readme.md",
+    "ai-diagnosis/node_modules/import-fresh/readme.md",
+    "ai-diagnosis/node_modules/typescript-eslint/README.md",
+    "ai-diagnosis/node_modules/@babel/compat-data/README.md",
+    "ai-diagnosis/node_modules/@eslint/config-helpers/README.md",
+    "ai-diagnosis/node_modules/strip-json-comments/readme.md",
+    "ai-diagnosis/node_modules/json-schema-traverse/README.md",
+    "ai-diagnosis/node_modules/shebang-command/readme.md",
+    "ai-diagnosis/node_modules/color-name/README.md",
+    "ai-diagnosis/node_modules/fast-json-stable-stringify/README.md",
+    "ai-diagnosis/node_modules/type-check/README.md",
+    "ai-diagnosis/node_modules/baseline-browser-mapping/README.md",
+    "ai-diagnosis/node_modules/@babel/helper-plugin-utils/README.md",
+    "ai-diagnosis/src/assets/react.svg",
+    "ai-diagnosis/public/vite.svg",
     "task-manager/app/src/assets/react.svg",
     "task-manager/app/public/vite.svg",
     "本山貴弘/SNS原稿/note_banner_cta.png",
@@ -235,8 +222,6 @@
     "本山貴弘/SNS原稿/note_diagram_labor.png",
     "本山貴弘/SNS原稿/note_thumbnail.png",
     "本山貴弘/ランディングページ/lp_background_clean.png",
-    "本山貴弘/ランディングページ/lp_header.png",
-    "threads_icon_pixel_tiger_forest_1765798544390.png",
     "無題のファイル.canvas"
   ]
 }
