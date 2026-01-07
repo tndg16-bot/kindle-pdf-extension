@@ -21,6 +21,13 @@
                 "PYTHONPATH": "./.claude/mcp/serena/src"
             }
         },
+        "memory": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ]
+        },
         "figma": {
             "command": "claude",
             "args": [
