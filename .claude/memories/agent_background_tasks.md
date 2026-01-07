@@ -9,7 +9,7 @@
 
 ### タスク1: LINE連携設定
 **担当**: Leo (Antigravity)
-**ステータス**: ⏳ 待機中（LINEのURL待ち）
+**ステータス**: ✅ 完了（https://lin.ee/VAYurUv 設定済み）
 
 **作業内容**:
 1. ユーザーからLINE公式アカウントのURLを取得
@@ -49,7 +49,7 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp -s project
 
 ### タスク3: ポートフォリオサイトに診断ツール組み込み
 **担当**: Kai (Frontend Engineer) + Mia (Design)
-**優先度**: 🟢 低
+**ステータス**: ✅ 完了（https://portfolio-fawn-pi-84.vercel.app）
 
 **作業内容**:
 1. ポートフォリオサイトにProjectsセクションを追加
@@ -103,10 +103,10 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp -s project
 
 ## 📝 TODO
 
-- [ ] LINEのURLを受け取る（ユーザーから）
-- [ ] Figma MCPを有効化
-- [ ] ポートフォリオサイトにProjectsセクションを追加
-- [ ] PDFデザインを作成
+- [x] LINEのURLを受け取る（ユーザーから）✅ 完了
+- [ ] Figma MCPを有効化 ⏳ 次回
+- [x] ポートフォリオサイトにProjectsセクションを追加 ✅ 完了
+- [ ] PDFデザインを作成 ⏳ 次回
 
 ---
 

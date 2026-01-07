@@ -241,6 +241,104 @@ export default function Home() {
       {/* Dashboard Section */}
       <Dashboard />
 
+      {/* Projects Section */}
+      <section id="section-projects" className="w-full max-w-7xl px-4 py-24 min-h-[70vh] flex flex-col items-center justify-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="text-center mb-16"
+        >
+          <motion.div variants={itemVariants} className="mb-4 flex justify-center">
+            <div className="flex items-center gap-2 rounded-full bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-400 border border-teal-500/20">
+              <Cpu size={16} />
+              <span>AI Tools</span>
+            </div>
+          </motion.div>
+          <motion.h2 variants={itemVariants} className="text-4xl font-bold md:text-5xl text-white mb-4">
+            AI活用プロジェクト
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-zinc-400 text-lg max-w-2xl mx-auto">
+            自己決定力を加速させるためのAIツールを開発しています
+          </motion.p>
+        </motion.div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
+          {/* AI副業適性診断ツール */}
+          <motion.a
+            href="https://ai-diagnosis-six.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileInView="visible"
+            initial="hidden"
+            viewport={{ once: true }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.02, y: -5 }}
+            className="glass-panel group relative flex flex-col rounded-3xl p-8 border border-white/5 hover:border-teal-500/30 transition-all duration-500 bg-black/20 cursor-pointer"
+          >
+            <div className="absolute -top-4 -right-4 bg-gradient-to-br from-purple-500/30 to-pink-500/30 p-3 rounded-xl backdrop-blur-md border border-purple-500/30 text-purple-400 group-hover:scale-110 transition-transform duration-500">
+              <Sparkles size={24} />
+            </div>
+            <div className="text-4xl mb-4">🤖</div>
+            <h3 className="text-xl font-bold text-white mb-2">AI副業適性診断</h3>
+            <p className="text-zinc-400 text-sm mb-4 flex-grow">
+              5問の質問で、あなたに向いているAI副業タイプを診断。MBTI分析も可能。
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-xs bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full">React</span>
+              <span className="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded-full">TypeScript</span>
+              <span className="text-xs bg-pink-500/20 text-pink-400 px-2 py-1 rounded-full">Vercel</span>
+            </div>
+            <div className="flex items-center text-teal-400 text-sm font-medium group-hover:gap-3 transition-all">
+              診断を試す <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </motion.a>
+
+          {/* タスク管理ツール */}
+          <motion.div
+            whileInView="visible"
+            initial="hidden"
+            viewport={{ once: true }}
+            variants={itemVariants}
+            className="glass-panel group relative flex flex-col rounded-3xl p-8 border border-white/5 hover:border-teal-500/30 transition-all duration-500 bg-black/20"
+          >
+            <div className="absolute -top-4 -right-4 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 p-3 rounded-xl backdrop-blur-md border border-blue-500/30 text-blue-400 group-hover:scale-110 transition-transform duration-500">
+              <Target size={24} />
+            </div>
+            <div className="text-4xl mb-4">📋</div>
+            <h3 className="text-xl font-bold text-white mb-2">タスク管理ツール</h3>
+            <p className="text-zinc-400 text-sm mb-4 flex-grow">
+              Google Calendar/Tasks連携。音声入力対応で、素早くタスクを登録。
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">React</span>
+              <span className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full">Google API</span>
+              <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Voice</span>
+            </div>
+            <div className="text-zinc-500 text-sm">
+              🔒 プライベート利用
+            </div>
+          </motion.div>
+
+          {/* Coming Soon */}
+          <motion.div
+            whileInView="visible"
+            initial="hidden"
+            viewport={{ once: true }}
+            variants={itemVariants}
+            className="glass-panel group relative flex flex-col items-center justify-center rounded-3xl p-8 border border-dashed border-white/10 hover:border-teal-500/20 transition-all duration-500 bg-black/10 min-h-[280px]"
+          >
+            <div className="text-4xl mb-4 opacity-50">🚀</div>
+            <h3 className="text-xl font-bold text-zinc-500 mb-2">Coming Soon</h3>
+            <p className="text-zinc-600 text-sm text-center">
+              新しいAIツールを開発中...<br />
+              お楽しみに！
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Booking Form Section */}
       <BookingForm />
 
