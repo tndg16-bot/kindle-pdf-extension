@@ -14,6 +14,10 @@ const navItems = [
     { href: '/contact', label: 'Contact' },
 ];
 
+const externalLinks = [
+    { href: 'https://ai-diagnosis-six.vercel.app', label: '🤖 診断' },
+];
+
 export default function Header() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,8 +38,8 @@ export default function Header() {
                                 key={item.href}
                                 href={item.href}
                                 className={`relative py-2 text-sm font-medium transition-colors ${pathname === item.href
-                                        ? 'text-teal-400'
-                                        : 'text-zinc-400 hover:text-white'
+                                    ? 'text-teal-400'
+                                    : 'text-zinc-400 hover:text-white'
                                     }`}
                             >
                                 {item.label}
@@ -46,6 +50,17 @@ export default function Header() {
                                     />
                                 )}
                             </Link>
+                        ))}
+                        {externalLinks.map((item) => (
+                            <a
+                                key={item.href}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="py-2 px-3 text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:brightness-110 transition-all"
+                            >
+                                {item.label}
+                            </a>
                         ))}
                     </div>
 
@@ -73,12 +88,24 @@ export default function Header() {
                                     href={item.href}
                                     onClick={() => setIsMenuOpen(false)}
                                     className={`py-2 text-sm font-medium transition-colors ${pathname === item.href
-                                            ? 'text-teal-400'
-                                            : 'text-zinc-400 hover:text-white'
+                                        ? 'text-teal-400'
+                                        : 'text-zinc-400 hover:text-white'
                                         }`}
                                 >
                                     {item.label}
                                 </Link>
+                            ))}
+                            {externalLinks.map((item) => (
+                                <a
+                                    key={item.href}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="py-2 px-3 text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-center hover:brightness-110 transition-all"
+                                >
+                                    {item.label}
+                                </a>
                             ))}
                         </div>
                     </motion.div>
