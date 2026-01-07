@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI副業適性診断 - クリエイター型 ロードマップ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            color: #f8fafc;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        .page-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .page-num {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fb7185;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        h1 .accent {
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .traits {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .trait-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .trait-box h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trait-box.strength h4 {
+            color: #4ade80;
+        }
+
+        .trait-box.weakness h4 {
+            color: #f87171;
+        }
+
+        .trait-box ul {
+            list-style: none;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .trait-box li {
+            padding: 5px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .trait-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #f43f5e;
+        }
+
+        .mbti-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mbti-tag {
+            background: rgba(244, 63, 94, 0.15);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .job-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .job-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-card .meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .job-card .income {
+            color: #4ade80;
+        }
+
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .cta-section p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .qr-placeholder {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            font-size: 12px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 20mm;
+            right: 20mm;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                padding: 15mm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ページ1: タイプ概要 -->
+    <div class="page">
+        <div class="page-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="header">
+            <span class="logo">Life Self-Determination Protocol</span>
+            <span class="page-num">1 / 4</span>
+        </div>
+        <div class="type-badge"><span>🎨</span><span>クリエイター型</span></div>
+        <h1>あなたは<br><span class="accent">「クリエイター型」</span>です</h1>
+        <p class="tagline">ビジュアルで世界を変える才能</p>
+        <p class="description">
+            視覚的なセンスに優れ、美しいものを生み出すことが得意なあなた。<br>
+            デザインや映像で人々を魅了する力があります。<br>
+            AIツールを活用すれば制作スピードが5倍に。
+        </p>
+        <div class="traits">
+            <div class="trait-box strength">
+                <h4>✅ 強み</h4>
+                <ul>
+                    <li>視覚的センスが優れている</li>
+                    <li>トレンドに敏感</li>
+                    <li>独自の世界観を持っている</li>
+                    <li>作品で感動を与えられる</li>
+                </ul>
+            </div>
+            <div class="trait-box weakness">
+                <h4>⚠️ 注意点</h4>
+                <ul>
+                    <li>納期管理が苦手なことも</li>
+                    <li>クライアントの要望と自分の表現の間で葛藤</li>
+                    <li>数字やロジックは得意ではないかも</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h3>🧠 相性の良いMBTI</h3>
+            <div class="mbti-grid">
+                <div class="mbti-tag">ISFP</div>
+                <div class="mbti-tag">ENFP</div>
+                <div class="mbti-tag">INFP</div>
+                <div class="mbti-tag">ESFP</div>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8;">感性型・知覚型のタイプと特に相性が良いです。</p>
+        </div>
+        <div class="footer">© 2026 Takahiro Motoyama | Life Self-Determination Protocol</div>
+    </div>
+
+    <!-- ページ2: 向いている副業 -->
+    <div class="page">
+        <div class="page-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="header"><span class="logo">🎨 クリエイター型ロードマップ</span><span class="page-num">2 / 4</span></div>
+        <h2>💼 あなたに向いているAI副業</h2>
+        <div class="job-list">
+            <div class="job-card">
+                <h4>🖼️ AI画像生成・販売</h4>
+                <div class="meta"><span class="income">月収: 5〜30万円</span><span>難易度: ★★☆☆☆</span></div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">MidjourneyやStable
+                    DiffusionでAIアートを生成。ストックフォトやNFTとして販売。</p>
+            </div>
+            <div class="job-card">
+                <h4>🎬 動画制作・編集</h4>
+                <div class="meta"><span class="income">月収: 10〜50万円</span><span>難易度: ★★★☆☆</span></div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">YouTubeや企業PVの編集。AI字幕生成で作業効率が劇的に向上。</p>
+            </div>
+            <div class="job-card">
+                <h4>📱 Webデザイン</h4>
+                <div class="meta"><span class="income">月収: 15〜40万円</span><span>難易度: ★★★☆☆</span></div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">LPやバナー制作。Figma×AI生成で高速デザイン。</p>
+            </div>
+            <div class="job-card">
+                <h4>🎵 サムネイル制作</h4>
+                <div class="meta"><span class="income">月収: 5〜20万円</span><span>難易度: ★★☆☆☆</span></div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">YouTubeサムネイル専門。1枚3000円〜で月50枚こなせば15万円。</p>
+            </div>
+        </div>
+        <div class="section" style="margin-top: 30px;">
+            <h3>🛠️ おすすめツール</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;">
+                <div
+                    style="text-align: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🎨</div>
+                    <div style="font-size: 12px; font-weight: 600;">Midjourney</div>
+                    <div style="font-size: 10px; color: #94a3b8;">$10/月〜</div>
+                </div>
+                <div
+                    style="text-align: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">✨</div>
+                    <div style="font-size: 12px; font-weight: 600;">Canva</div>
+                    <div style="font-size: 10px; color: #94a3b8;">無料〜</div>
+                </div>
+                <div
+                    style="text-align: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🎬</div>
+                    <div style="font-size: 12px; font-weight: 600;">CapCut</div>
+                    <div style="font-size: 10px; color: #94a3b8;">無料</div>
+                </div>
+                <div
+                    style="text-align: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🖌️</div>
+                    <div style="font-size: 12px; font-weight: 600;">Figma</div>
+                    <div style="font-size: 10px; color: #94a3b8;">無料〜</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">© 2026 Takahiro Motoyama | Life Self-Determination Protocol</div>
+    </div>
+
+    <!-- ページ3: MBTI別アドバイス -->
+    <div class="page">
+        <div class="page-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="header"><span class="logo">🎨 クリエイター型ロードマップ</span><span class="page-num">3 / 4</span></div>
+        <h2>🧠 MBTI別アドバイス</h2>
+        <div class="section" style="margin-bottom: 15px;">
+            <h3 style="color: #fb7185;">ISFP（冒険家）× クリエイター型</h3>
+            <div style="display: flex; gap: 20px; margin-top: 10px;">
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #4ade80; margin-bottom: 5px;">✅ 最強ポイント</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">独自の美的センスが作品に宿る。「自分らしさ」が武器になる。</p>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #f87171; margin-bottom: 5px;">⚠️ 注意点</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">自己PRが苦手。作品を見せるだけでなく、ストーリーを語る練習を。</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #f43f5e; margin-top: 10px;">💡 おすすめ: アート作品販売、写真編集、インスタ運用</p>
+        </div>
+        <div class="section" style="margin-bottom: 15px;">
+            <h3 style="color: #fb7185;">ENFP（広報運動家）× クリエイター型</h3>
+            <div style="display: flex; gap: 20px; margin-top: 10px;">
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #4ade80; margin-bottom: 5px;">✅ 最強ポイント</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">アイデアが無限に湧く。人を巻き込む力がある。</p>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #f87171; margin-bottom: 5px;">⚠️ 注意点</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">飽きっぽい傾向。1つのジャンルに絞る勇気を。</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #f43f5e; margin-top: 10px;">💡 おすすめ: YouTubeチャンネル運営、SNSコンテンツ制作</p>
+        </div>
+        <div class="section" style="margin-bottom: 15px;">
+            <h3 style="color: #fb7185;">INFP（仲介者）× クリエイター型</h3>
+            <div style="display: flex; gap: 20px; margin-top: 10px;">
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #4ade80; margin-bottom: 5px;">✅ 最強ポイント</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">感情を揺さぶる作品が作れる。深い世界観を構築できる。</p>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #f87171; margin-bottom: 5px;">⚠️ 注意点</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">批判に弱い。まずは匿名で作品を出すのもあり。</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #f43f5e; margin-top: 10px;">💡 おすすめ: イラスト販売、小説挿絵、ブランドデザイン</p>
+        </div>
+        <div class="section">
+            <h3 style="color: #fb7185;">ESFP（エンターテイナー）× クリエイター型</h3>
+            <div style="display: flex; gap: 20px; margin-top: 10px;">
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #4ade80; margin-bottom: 5px;">✅ 最強ポイント</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">トレンドを掴む嗅覚。即興で魅力的なコンテンツが作れる。</p>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 13px; color: #f87171; margin-bottom: 5px;">⚠️ 注意点</p>
+                    <p style="font-size: 12px; color: #cbd5e1;">計画性が弱いかも。締め切りを設けて自分を追い込む。</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #f43f5e; margin-top: 10px;">💡 おすすめ: TikTok運用、ライブ配信サムネ、イベントビジュアル</p>
+        </div>
+        <div class="footer">© 2026 Takahiro Motoyama | Life Self-Determination Protocol</div>
+    </div>
+
+    <!-- ページ4: アクションプラン -->
+    <div class="page">
+        <div class="page-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="header"><span class="logo">🎨 クリエイター型ロードマップ</span><span class="page-num">4 / 4</span></div>
+        <h2>🚀 3ステップアクションプラン</h2>
+        <div class="section">
+            <h3>📅 今日やること（30分でできる）</h3>
+            <div style="margin-top: 15px;">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Canvaに登録する</h4>
+                        <p>無料で使える最強デザインツール。https://www.canva.com/</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>テンプレートを1つ選んでカスタマイズ</h4>
+                        <p>SNS投稿画像やバナーをお手本に作ってみる。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>作った作品をSNSに投稿</h4>
+                        <p>恥ずかしくても出す。フィードバックをもらう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h3>📆 1週間でやること</h3>
+            <ul style="font-size: 13px; color: #cbd5e1; line-height: 2; list-style: none;">
+                <li>✅ ココナラでデザイン系のサービスを10件チェック</li>
+                <li>✅ 自分の得意分野を決める（サムネ?バナー?ロゴ?）</li>
+                <li>✅ 3つのサンプル作品を作る（ポートフォリオ用）</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📅 1ヶ月でやること</h3>
+            <ul style="font-size: 13px; color: #cbd5e1; line-height: 2; list-style: none;">
+                <li>✅ ココナラ or クラウドワークスでサービス出品</li>
+                <li>✅ 最初の1件を獲得する（最初は激安でもOK）</li>
+                <li>✅ レビューを集めて信頼を構築する</li>
+            </ul>
+        </div>
+        <div class="cta-section">
+            <h3>📲 さらに詳しく知りたい方へ</h3>
+            <p>あなた専用のロードマップを一緒に作りましょう</p>
+            <div class="qr-placeholder">LINE QR</div>
+            <p style="font-size: 16px; font-weight: 600; color: #4ade80;">🎁 初回相談無料（通常¥5,000）</p>
+        </div>
+        <div class="footer">© 2026 Takahiro Motoyama | Life Self-Determination Protocol</div>
+    </div>
+</body>
+
+</html>

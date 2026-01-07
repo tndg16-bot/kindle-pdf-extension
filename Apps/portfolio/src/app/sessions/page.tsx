@@ -252,6 +252,38 @@ export default function SessionsPage() {
                     </motion.div>
                 </section>
 
+                {/* 診断誘導バナー */}
+                <section className="w-full max-w-3xl px-4 mb-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="glass-panel rounded-3xl p-8 md:p-10 border border-purple-500/20 bg-gradient-to-r from-purple-500/5 to-pink-500/5"
+                    >
+                        <div className="flex flex-col md:flex-row items-center gap-6">
+                            <div className="text-5xl">🤖</div>
+                            <div className="flex-1 text-center md:text-left">
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                                    まずは無料で適性診断
+                                </h3>
+                                <p className="text-zinc-300 text-base">
+                                    5問の質問で、あなたに向いているAI副業タイプがわかります。<br />
+                                    セッションを受ける前に、自分の傾向を把握しておきましょう。
+                                </p>
+                            </div>
+                            <a
+                                href="https://ai-diagnosis-six.vercel.app"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold hover:brightness-110 transition-all whitespace-nowrap"
+                            >
+                                診断を受ける
+                                <ArrowRight size={18} />
+                            </a>
+                        </div>
+                    </motion.div>
+                </section>
+
                 {/* Booking Form */}
                 <BookingForm />
 
