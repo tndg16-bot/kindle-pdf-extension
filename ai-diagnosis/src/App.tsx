@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 // LINE URL
-const LINE_URL = 'https://line.me/R/ti/p/@YOUR_LINE_ID' // TODO: 実際のLINE IDに変更
+const LINE_URL = 'https://lin.ee/VAYurUv'
 
 // 選択肢の型定義
 interface QuestionOption {
