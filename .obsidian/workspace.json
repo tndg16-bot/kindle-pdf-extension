@@ -37,12 +37,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Gmail to Obsidian 完全ガイド.md",
+                "file": "本山貴裕/日記/2026-01-07.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Gmail to Obsidian 完全ガイド"
+              "title": "2026-01-07"
             }
           }
         ],
@@ -185,6 +185,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
       "bases:Create new base": false,
       "switcher:クイックスイッチャーを開く": false,
       "graph:グラフビューを開く": false,
@@ -198,8 +199,12 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "9625a3ae9aecaf0c",
+  "active": "fc72cbca73b68a06",
   "lastOpenFiles": [
+    "作業中.md",
+    "毎日確認やることリスト.md",
+    "Gmail to Obsidian 完全ガイド.md",
+    "本山貴裕/日記/2026-01-07.md",
     "Templates/Style_Profile_Template.md",
     "Templates/Style_Profile_Target.md",
     "BusinessQuoteBot/Spec_Sheet.md",
@@ -232,10 +237,6 @@
     "Community_Project/LP_Draft.md",
     "Community_Andes/LP_Draft.md",
     "Community_Andes/Project_Plan.md",
-    "Community_Andes/Spec_LP_Draft.md",
-    "Community_Andes/Andes_Project_Plan.md",
-    "Vault_Analysis_Strategy.md",
-    "Tools_Manual.md",
     "本山貴弘/SNS原稿/note_banner_cta.png",
     "本山貴弘/SNS原稿/note_diagram_auto.png",
     "本山貴弘/SNS原稿/note_diagram_steps.png",
