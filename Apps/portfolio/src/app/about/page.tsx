@@ -81,7 +81,7 @@ export default function AboutPage() {
                             <span className="text-white">自分で決められる人を増やしたい</span>
                         </motion.h1>
 
-                        <motion.p variants={itemVariants} className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                        <motion.p variants={itemVariants} className="text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
                             情報も正解も溢れている時代だからこそ、<br />
                             最後に頼れるのは「自分で決められる力」だと思っています。
                         </motion.p>
@@ -128,12 +128,12 @@ export default function AboutPage() {
                                     <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
                                         <service.icon className="w-6 h-6 text-teal-400" />
                                     </div>
-                                    <p className="text-zinc-300 leading-relaxed pt-2">{service.text}</p>
+                                    <p className="text-zinc-200 leading-relaxed pt-2">{service.text}</p>
                                 </motion.div>
                             ))}
                         </div>
 
-                        <motion.p variants={itemVariants} className="text-center text-zinc-500 mt-6 text-sm">
+                        <motion.p variants={itemVariants} className="text-center text-zinc-400 mt-6 text-base">
                             ※「売り込み」が目的ではありません。必要な場合にだけ、次の選択肢を提示します。
                         </motion.p>
                     </motion.div>
@@ -152,9 +152,9 @@ export default function AboutPage() {
                             なぜこれをやっているのか
                         </motion.h2>
 
-                        <motion.div variants={itemVariants} className="space-y-4 text-zinc-300 leading-relaxed">
+                        <motion.div variants={itemVariants} className="space-y-4 text-zinc-200 leading-relaxed">
                             <p>多くの人が、答えを持っていないわけではなくて、</p>
-                            <ul className="list-disc list-inside space-y-2 pl-4 text-zinc-400">
+                            <ul className="list-disc list-inside space-y-3 pl-4 text-zinc-300 leading-relaxed">
                                 <li>自分を信じきれない</li>
                                 <li>言葉にするのが怖い</li>
                                 <li>何から手をつけていいか分からない</li>
@@ -193,7 +193,7 @@ export default function AboutPage() {
                                     className="p-6 rounded-xl bg-white/5 border border-white/10"
                                 >
                                     <h3 className="text-lg font-bold text-teal-400 mb-3">{item.area}</h3>
-                                    <p className="text-sm text-zinc-400">{item.description}</p>
+                                    <p className="text-base text-zinc-300">{item.description}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
                                     className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10"
                                 >
                                     <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
-                                    <p className="text-zinc-300">{promise}</p>
+                                    <p className="text-zinc-200">{promise}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -252,7 +252,7 @@ export default function AboutPage() {
                                 </h3>
                                 <ul className="space-y-3">
                                     {fitFor.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-2 text-zinc-300">
+                                        <li key={index} className="flex items-start gap-2 text-zinc-200">
                                             <span className="text-teal-400 mt-1">•</span>
                                             {item}
                                         </li>
@@ -266,7 +266,7 @@ export default function AboutPage() {
                                 </h3>
                                 <ul className="space-y-3">
                                     {notFitFor.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-2 text-zinc-300">
+                                        <li key={index} className="flex items-start gap-2 text-zinc-200">
                                             <span className="text-red-400 mt-1">•</span>
                                             {item}
                                         </li>
