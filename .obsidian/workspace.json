@@ -22,31 +22,21 @@
             }
           },
           {
-            "id": "8329b973b7e8f06e",
-            "type": "leaf",
-            "state": {
-              "type": "full-calendar-view",
-              "state": {},
-              "icon": "calendar-glyph",
-              "title": "Calendar"
-            }
-          },
-          {
             "id": "fc72cbca73b68a06",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "本山貴裕/日記/2026-01-07.md",
+                "file": "開発ツール連携図.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-07"
+              "title": "開発ツール連携図"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -199,44 +189,46 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "fc72cbca73b68a06",
+  "active": "9625a3ae9aecaf0c",
   "lastOpenFiles": [
-    "作業中.md",
-    "毎日確認やることリスト.md",
-    "Gmail to Obsidian 完全ガイド.md",
-    "本山貴裕/日記/2026-01-07.md",
-    "Templates/Style_Profile_Template.md",
-    "Templates/Style_Profile_Target.md",
-    "BusinessQuoteBot/Spec_Sheet.md",
-    "AI_Agent_Usage_Guide.md",
-    "scripts/calendar/GAS_Setup_Guide.md",
-    "scripts/calendar/setup_reminders.js",
-    "scripts/calendar",
-    "Self_Analysis_Work/Run_Strategist_Agent.bat",
-    "Self_Analysis_Work/Run_Design_Agent.bat",
-    "Self_Analysis_Work/Run_Content_Agent.bat",
-    "Self_Analysis_Work/Self_Analysis_Work_Project_Plan.md",
-    "Self_Analysis_Work/Run_SNS_Agent.bat",
-    "Self_Analysis_Work/Run_Ideation_Agent.bat",
-    "Self_Analysis_Work/Run_Research_Agent.bat",
-    "Self_Analysis_Work",
-    "scripts/strategy/run_strategist.bat",
-    "Templates/Motoyama_Profile.md",
-    "Templates/Design_Prompt.md",
-    "SNS_Drafts/Bulk_Tweet_Batch_20260102_000418.md",
-    "Templates/Blog_Post_Prompt.md",
-    "SNS_Drafts/Bulk_Tweet_Batch_20260101_234757.md",
-    "Templates/SNS_Post_Prompt.md",
-    "Antigravity_Rules.md",
-    "AI_Organization_Chart.md",
-    "Community_Project/ASP_News_Log.md",
-    "Community_Project/Content/03_Mercari_Template.md",
-    "Community_Project/Content/02_SelfBack_Manual.md",
-    "Community_Project/Content/Curriculum_Outline.md",
-    "Community_Project/Project_Plan.md",
-    "Community_Project/LP_Draft.md",
-    "Community_Andes/LP_Draft.md",
-    "Community_Andes/Project_Plan.md",
+    "初回オリエンテーション アジェンダ.md",
+    "プロジェクト一覧.md",
+    "開発ツール連携図.md",
+    "本山貴裕/2025-08-19_Geminiによる自己分析と事業戦略メモ.md",
+    "task-manager/app/node_modules/@react-oauth/google/README.md",
+    "task-manager/app/node_modules/@react-oauth/google/package.json",
+    "task-manager/app/node_modules/@react-oauth/google/dist/index.js",
+    "task-manager/app/node_modules/@react-oauth/google/dist/index.esm.js",
+    "task-manager/app/node_modules/@react-oauth/google/dist/index.d.ts",
+    "task-manager/app/node_modules/@react-oauth/google/dist",
+    "task-manager/app/node_modules/jwt-decode/README.md",
+    "task-manager/app/node_modules/jwt-decode/package.json",
+    "task-manager/app/node_modules/jwt-decode/build/esm/index.js",
+    "task-manager/app/node_modules/jwt-decode/build/esm/index.d.ts",
+    "task-manager/app/node_modules/jwt-decode/build/cjs/package.json",
+    "task-manager/app/node_modules/jwt-decode/build/cjs/index.js",
+    "task-manager/app/node_modules/yocto-queue/readme.md",
+    "task-manager/app/node_modules/yallist/README.md",
+    "task-manager/app/node_modules/word-wrap/README.md",
+    "task-manager/app/node_modules/which/README.md",
+    "task-manager/app/node_modules/which/CHANGELOG.md",
+    "task-manager/app/node_modules/vite/README.md",
+    "task-manager/app/node_modules/vite/LICENSE.md",
+    "task-manager/app/node_modules/update-browserslist-db/README.md",
+    "task-manager/app/node_modules/typescript/SECURITY.md",
+    "task-manager/app/node_modules/typescript/README.md",
+    "task-manager/app/node_modules/type-check/README.md",
+    "task-manager/app/node_modules/ts-api-utils/README.md",
+    "task-manager/app/node_modules/ts-api-utils/LICENSE.md",
+    "task-manager/app/node_modules/strip-json-comments/readme.md",
+    "task-manager/app/node_modules/source-map-js/README.md",
+    "task-manager/app/node_modules/shebang-regex/readme.md",
+    "task-manager/app/node_modules/shebang-command/readme.md",
+    "task-manager/app/node_modules/semver/README.md",
+    "task-manager/app/node_modules/scheduler/README.md",
+    "task-manager/app/node_modules/rollup/README.md",
+    "task-manager/app/src/assets/react.svg",
+    "task-manager/app/public/vite.svg",
     "本山貴弘/SNS原稿/note_banner_cta.png",
     "本山貴弘/SNS原稿/note_diagram_auto.png",
     "本山貴弘/SNS原稿/note_diagram_steps.png",
@@ -245,8 +237,6 @@
     "本山貴弘/ランディングページ/lp_background_clean.png",
     "本山貴弘/ランディングページ/lp_header.png",
     "threads_icon_pixel_tiger_forest_1765798544390.png",
-    "無題のファイル.canvas",
-    "文字起こしブースター/mioji_share_v2.1/venv/Lib/site-packages/gradio/_frontend_code/imageslider/img_02.png",
-    "文字起こしブースター/mioji_share_v2.1/venv/Lib/site-packages/gradio/_frontend_code/imageslider/img_03.png"
+    "無題のファイル.canvas"
   ]
 }

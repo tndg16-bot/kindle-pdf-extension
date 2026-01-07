@@ -1,0 +1,121 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.auth-container.authenticated {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.auth-loading {
+  text-align: center;
+  padding: 1.5rem;
+  color: #666;
+}
+
+.auth-error {
+  padding: 1rem;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ユーザー情報 */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.user-name {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-email {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* 認証ボタン */
+.auth-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.auth-button.signin {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-button.signin:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.auth-button.signout {
+  background: #ea4335;
+  color: white;
+}
+
+.auth-button.signout:hover {
+  background: #c5221f;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+}
+
+/* レスポンシブ */
+@media (max-width: 600px) {
+  .auth-container.authenticated {
+    flex-direction: column;
+  }
+
+  .auth-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
