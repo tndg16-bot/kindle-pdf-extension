@@ -41,3 +41,6 @@ desktop.ini
 
 # Git conflict files (from Dropbox/iCloud sync if any)
 **/*.sync-conflict-*
+
+# Secret files - DO NOT COMMIT
+Apps/portfolio/set_github_env_correct.ps1
