@@ -44,3 +44,6 @@ desktop.ini
 
 # Secret files - DO NOT COMMIT
 Apps/portfolio/set_github_env_correct.ps1
+
+# Obsidian Plugins (contain secrets/build artifacts)
+.obsidian/plugins/
