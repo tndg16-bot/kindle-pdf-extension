@@ -1,0 +1,14 @@
+# CODEOWNERS - 重要ファイルの変更には管理者の承認が必要
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# デフォルト: すべてのファイルは管理者がオーナー
+* @tndg16-bot
+
+# 重要な設定ファイル（必ず管理者の承認が必要）
+/.github/ @tndg16-bot
+/Apps/portfolio/next.config.* @tndg16-bot
+/Apps/gamified-mandala/next.config.* @tndg16-bot
+
+# 環境変数・機密情報
+.env* @tndg16-bot
+*.env @tndg16-bot
